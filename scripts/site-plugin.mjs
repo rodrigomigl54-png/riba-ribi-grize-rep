@@ -301,7 +301,7 @@ export async function renderPage(template, lang) {
     img: (a) => picture(images, a.name, { alt: get(t, a.alt) || '', sizes: a.sizes, cls: a.class || '', eager: a.eager === 'true', ratio: a.ratio }),
     price: (a) => priceOf(a.dish),
     jsonld: () => `<script type="application/ld+json">${JSON.stringify(jsonLd(config, t, lang))}</script>`,
-    i18n: () => `<script type="application/json" id="i18n">${JSON.stringify({ lang, contact: t.contact, days: t.days, menu: t.menu, gallery: t.gallery, nav: t.nav }).replace(/</g, '\\u003c')}</script>`,
+    i18n: () => `<script type="application/json" id="i18n">${JSON.stringify({ lang, hero: { play: t.hero.play, pause: t.hero.pause }, contact: t.contact, days: t.days, menu: t.menu, gallery: t.gallery, nav: t.nav }).replace(/</g, '\\u003c')}</script>`,
     config: () => `<script type="application/json" id="site-config">${JSON.stringify({ phone: config.phone, reservations: config.reservations, hours: config.hours, timezone: config.timezone, links: config.links, video: video ? { intro: video.intro.duration, hero: video.hero.duration } : null }).replace(/</g, '\\u003c')}</script>`,
     langswitch: () => `<a href="${hrefSr}" hreflang="sr" lang="sr"${lang === 'sr' ? ' aria-current="true"' : ''}>SR</a><span aria-hidden="true">/</span><a href="${hrefEn}" hreflang="en" lang="en"${lang === 'en' ? ' aria-current="true"' : ''}>EN</a>`,
     hreflang: () => ['sr', 'en'].map((l) => `<link rel="alternate" hreflang="${l}" href="${config.siteUrl}${l === 'en' ? hrefEn : hrefSr}">`).join('') + `<link rel="alternate" hreflang="x-default" href="${config.siteUrl}/">`,

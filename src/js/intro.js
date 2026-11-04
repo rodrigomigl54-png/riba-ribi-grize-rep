@@ -97,21 +97,39 @@ export function initIntro({ onDone }) {
 
   const holder = $('.intro__video', intro);
   const v = makeVideo('intro');
-  holder.appendChild(v);
-  gsap.set(holder, { opacity: 0 });
+  holder.appendChild(v);   // poster (prvi kadar) se vidi odmah, dok se video učitava
 
   let started = false;
-  const failTimer = setTimeout(() => { if (!started) { v.remove(); fallback(); } }, 3500);
+  // na sporijem internetu video ima do 12 s da krene; tek onda kratka verzija bez videa
+  let giveUp = setTimeout(() => { if (!started) { v.remove(); fallback(); } }, 12000);
   v.addEventListener('playing', () => {
+    intro.classList.remove('is-waiting');
     if (started) return;
     started = true;
-    clearTimeout(failTimer);
-    gsap.to(holder, { opacity: 1, duration: 0.8 });
+    clearTimeout(giveUp);
+    $('.intro__play', intro)?.remove();
   });
+  v.addEventListener('waiting', () => intro.classList.add('is-waiting'));
   v.addEventListener('timeupdate', () => {
     if (v.duration && v.currentTime > v.duration - 3) showLogo();
   });
   v.addEventListener('ended', () => dive());
-  v.addEventListener('error', () => { if (!started) { clearTimeout(failTimer); fallback(); } }, true);
-  v.play().catch(() => { /* autoplay blokiran → failTimer pokreće rezervu */ });
+  v.addEventListener('error', () => { if (!started) { clearTimeout(giveUp); fallback(); } }, true);
+  intro.classList.add('is-waiting');
+  v.play().catch((err) => {
+    if (!err || err.name !== 'NotAllowedError') return;
+    // telefon blokira automatsko puštanje (npr. štednja baterije) → dugme „Pusti"
+    clearTimeout(giveUp);
+    intro.classList.remove('is-waiting');
+    const play = document.createElement('button');
+    play.type = 'button';
+    play.className = 'intro__play';
+    play.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>' + (document.documentElement.lang === 'en' ? 'Play' : 'Pusti') + '</span>';
+    play.addEventListener('click', () => {
+      v.play().catch(() => fallback());
+      giveUp = setTimeout(() => { if (!started) { v.remove(); fallback(); } }, 12000);
+    });
+    $('.intro__stage', intro).appendChild(play);
+    play.focus({ preventScroll: true });
+  });
 }

@@ -35,7 +35,9 @@
     "sub": "Fresh fish, the Adriatic on your plate and a glass of Malvasia — on Bulevar cara Lazara.",
     "reserve": "Book a table",
     "order": "Order (Wolt)",
-    "scroll": "Dive in"
+    "scroll": "Dive in",
+    "play": "Play video",
+    "pause": "Pause video"
   },
   "about": {
     "label": "The Konoba",
