@@ -35,7 +35,9 @@
     "sub": "Sveža riba, Jadran na tanjiru i čaša Malvazije — na Bulevaru cara Lazara.",
     "reserve": "Rezerviši sto",
     "order": "Naruči (Wolt)",
-    "scroll": "Zaroni"
+    "scroll": "Zaroni",
+    "play": "Pusti video",
+    "pause": "Pauziraj video"
   },
   "about": {
     "label": "Konoba",

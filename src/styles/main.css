@@ -976,3 +976,29 @@ input, textarea, select { font: inherit; color: inherit; }
 .mswipe span:last-child { animation-direction: reverse; }
 @keyframes swipe-hint { 50% { transform: translateX(-5px); } }
 @media (hover: none), (pointer: coarse) { .mswipe { display: flex; } }
+
+/* Dugme pauza/pusti za hero video */
+.hero__toggle {
+  position: absolute; right: var(--gutter); bottom: calc(clamp(36px, 6vw, 80px) + 22px); z-index: 3;
+  width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+  background: rgba(6, 22, 41, .45); border: 1px solid rgba(255, 255, 255, .45); color: var(--salt);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); transition: background .3s, color .3s;
+}
+.hero__toggle svg { width: 18px; fill: currentColor; }
+.hero__toggle:hover { background: var(--salt); color: var(--brand); }
+@media (max-width: 1023px) { .hero__toggle { bottom: auto; top: calc(var(--nav-h) + 10px); width: 38px; height: 38px; } }
+
+/* Intro: dugme „Pusti" (kad telefon blokira automatsko puštanje) i čekanje */
+.intro__video video { background: var(--abyss); }
+.intro__play {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%; z-index: 3;
+  display: inline-flex; align-items: center; gap: 12px; padding: 18px 30px; border-radius: 999px;
+  background: var(--salt); color: var(--brand); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 13px;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, .6);
+}
+.intro__play svg { width: 22px; fill: currentColor; }
+.intro.is-waiting .intro__stage::after {
+  content: ''; position: absolute; left: 50%; bottom: 96px; width: 34px; height: 34px; margin-left: -17px; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .25); border-top-color: var(--sky); animation: spin .9s linear infinite; z-index: 3;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
