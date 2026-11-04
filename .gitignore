@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+# generisano iz originala (npm run images / npm run video)
+public/assets/images/opt/
+src/generated/images.json
+# sirovi i obrađeni video (veliki fajlovi — dodaj u git samo ako hostuješ bez build koraka)
+public/assets/video/raw/*
+!public/assets/video/raw/.gitkeep

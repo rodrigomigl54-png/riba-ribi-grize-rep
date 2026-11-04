@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "title": "Konoba Riba Ribi Grize Rep — riblji restoran u Novom Sadu",
+    "description": "Sveža riba, morski plodovi i dalmatinska kuhinja u Novom Sadu. Bulevar cara Lazara 46. Rezervacije: 021 644 2922. Google ocena 4,8 ★.",
+    "ogAlt": "Konoba Riba Ribi Grize Rep — logo i morski plodovi"
+  },
+  "a11y": {
+    "skip": "Preskoči na sadržaj",
+    "home": "Riba Ribi Grize Rep — početak",
+    "lang": "Jezik",
+    "photoSoon": "Fotografija uskoro",
+    "newTab": "otvara se u novom prozoru",
+    "mainNav": "Glavna navigacija",
+    "mobileNav": "Mobilna navigacija",
+    "quick": "Brze akcije"
+  },
+  "nav": {
+    "about": "Konoba",
+    "kitchen": "Kuhinja",
+    "catch": "Ulov",
+    "menu": "Jelovnik",
+    "wine": "Vino",
+    "gallery": "Galerija",
+    "contact": "Kontakt",
+    "reserve": "Rezerviši",
+    "open": "Meni",
+    "close": "Zatvori"
+  },
+  "intro": {
+    "skip": "Preskoči"
+  },
+  "hero": {
+    "eyebrow": "Konoba · Novi Sad",
+    "slogan": "Zalogaj zalogaju grize rep.",
+    "sub": "Sveža riba, Jadran na tanjiru i čaša Malvazije — na Bulevaru cara Lazara.",
+    "reserve": "Rezerviši sto",
+    "order": "Naruči (Wolt)",
+    "scroll": "Zaroni"
+  },
+  "about": {
+    "label": "Konoba",
+    "title": "More, bez žurbe.",
+    "lead": "Riba Ribi Grize Rep je konoba u kojoj se sve vrti oko mora: sveža riba, školjke i morski plodovi, spremljeni na dalmatinski i mediteranski način — žar, maslinovo ulje, malo začinskog bilja i ništa suvišno.",
+    "text": "Uz tanjir ide čaša vina, najčešće bela, i ritam večeri na rivi. Osoblje govori više jezika, pa se ovde podjednako lepo osećaju i komšije i gosti iz daleka.",
+    "p1t": "Sveža riba",
+    "p1": "Birate je iz vitrine, a mi je spremamo kako volite — celu ili filetiranu.",
+    "p2t": "Jadranska kuhinja",
+    "p2": "Dalmatinski i mediteranski tanjiri: žar, buzara, crepulja, maslinovo ulje.",
+    "p3t": "Gostoprimstvo",
+    "p3": "Osoblje koje govori više jezika i rado preporuči šta je danas najbolje.",
+    "services": "U konobi · Za poneti · Dostava"
+  },
+  "kitchen": {
+    "label": "Iz kuhinje",
+    "title": "Sa žara i iz mora",
+    "intro": "Jela koja gosti najčešće biraju — i nekoliko koje toplo preporučujemo za početak.",
+    "plata": "Morski plodovi sa žara",
+    "plataD": "Gambori, lignje i riba sa žara, uz šparglu i maslinovo ulje.",
+    "file": "Brancin / Orada file",
+    "fileD": "File bele ribe sa čeri paradajzom i sosom.",
+    "bruskete": "Bruskete",
+    "brusketeD": "Sa dimljenim lososom i sa bakalarom na belo — uz čašu Malvazije.",
+    "paste": "Paste i rižota",
+    "pasteD": "Sipino mastilo, vongole, gambori na buzari — i zalazak sunca na terasi.",
+    "gambori": "Gambori na buzari",
+    "gamboriD": "Crvena ili bela buzara.",
+    "recTitle": "Preporuka za početak",
+    "kapesante": "Kapesante — San Žak",
+    "kapesanteD": "Gosti ih preporučuju za početak večeri.",
+    "hobotnica": "Grilovana hobotnica",
+    "hobotnicaD": "Sa žara, jednostavno — jedno od jela koje gosti najčešće biraju.",
+    "from": "od",
+    "perPiece": "po komadu",
+    "per100": "na 100 g",
+    "per150": "150 g",
+    "seeMenu": "Ceo jelovnik"
+  },
+  "catch": {
+    "label": "Ulov",
+    "title": "Vitrina ulova",
+    "text": "Celu ribu birate sami, svežu iz vitrine. Cena je po kilogramu, a na želju je filetiramo pred vama.",
+    "perKg": "po kg",
+    "onRequest": "na zahtev",
+    "drag": "Prevucite",
+    "note": "Cena po kilogramu. Konačna cena zavisi od težine izabrane ribe."
+  },
+  "menu": {
+    "label": "Jelovnik",
+    "title": "Jelovnik",
+    "search": "Pretraži jelovnik",
+    "searchPh": "npr. hobotnica, rižoto…",
+    "posno": "Posno",
+    "posnoLegend": "posno",
+    "onRequest": "na zahtev",
+    "perKg": "cena po kg",
+    "noResults": "Nema jela za ovu pretragu.",
+    "footnote": "Cene su izražene u dinarima. Gramaže su okvirne.",
+    "categories": "Kategorije",
+    "count": "jela"
+  },
+  "wine": {
+    "label": "Vino",
+    "title": "Malvazija",
+    "lead": "Belo vino jadranske obale — sveže, zlatno, sa notom bilja. Prirodan par za ribu, školjke i bruskete.",
+    "text": "Kod nas Malvazija nije samo u čaši: u njenom umaku sprema se file brancina i orade, kao i pileći medaljoni.",
+    "quote": "We highly recommend to start with scallops and also order malvazija vino, it is amazing!",
+    "cite": "Kelly · Google recenzija"
+  },
+  "gallery": {
+    "label": "Galerija",
+    "title": "Trenuci za stolom",
+    "hint": "Prevucite ili skrolujte",
+    "open": "Uvećaj fotografiju",
+    "close": "Zatvori"
+  },
+  "reviews": {
+    "label": "Utisci",
+    "title": "Šta kažu gosti",
+    "rating": "4,8",
+    "count": "1.481 Google recenzija",
+    "source": "Google recenzija",
+    "original": "originalno na engleskom",
+    "all": "Sve recenzije na Google-u"
+  },
+  "contact": {
+    "label": "Rezervacija",
+    "title": "Sačuvajte sto",
+    "lead": "Najbrže je da nas pozovete. Ako vam je lakše, popunite zahtev — sastavićemo poruku umesto vas.",
+    "call": "Pozovi",
+    "callSub": "Rezervacije telefonom",
+    "formTitle": "Zahtev za rezervaciju",
+    "name": "Ime i prezime",
+    "date": "Datum",
+    "time": "Vreme",
+    "guests": "Broj osoba",
+    "note": "Napomena",
+    "notePh": "Proslava, terasa, alergije…",
+    "optional": "opciono",
+    "submit": "Sastavi zahtev",
+    "submitWhatsapp": "Pošalji na WhatsApp",
+    "submitEmail": "Pošalji email",
+    "readyTitle": "Zahtev je spreman",
+    "readyText": "Rezervacija važi tek kada je potvrdimo. Kopirajte poruku ili nas pozovite.",
+    "copy": "Kopiraj tekst",
+    "copied": "Kopirano ✓",
+    "edit": "Izmeni",
+    "required": "Molimo popunite ovo polje.",
+    "pastDate": "Izaberite današnji ili neki budući datum.",
+    "msgIntro": "Zdravo! Želeo/la bih da rezervišem sto u Konobi Riba Ribi Grize Rep.",
+    "msgName": "Ime",
+    "msgDate": "Datum",
+    "msgTime": "Vreme",
+    "msgGuests": "Broj osoba",
+    "msgNote": "Napomena",
+    "emailSubject": "Rezervacija",
+    "hours": "Radno vreme",
+    "openNow": "Otvoreno sada",
+    "closedNow": "Zatvoreno",
+    "until": "do",
+    "opensAt": "Otvaramo u",
+    "opensDay": "Otvaramo",
+    "address": "Adresa",
+    "directions": "Uputstva",
+    "map": "Prikaži mapu",
+    "mapNote": "Mapa se učitava sa Google Maps",
+    "mapTitle": "Mapa — Bulevar cara Lazara 46, Novi Sad",
+    "order": "Naruči online",
+    "orderSub": "Dostava preko Wolta",
+    "follow": "Pratite nas",
+    "price": "2.000–5.000 RSD po osobi",
+    "priceLabel": "Prosečna cena",
+    "services": "Usluge",
+    "servicesList": "U konobi · Za poneti · Dostava"
+  },
+  "days": {
+    "short": [
+      "Ned",
+      "Pon",
+      "Uto",
+      "Sre",
+      "Čet",
+      "Pet",
+      "Sub"
+    ],
+    "long": [
+      "nedelja",
+      "ponedeljak",
+      "utorak",
+      "sreda",
+      "četvrtak",
+      "petak",
+      "subota"
+    ]
+  },
+  "footer": {
+    "rights": "Sva prava zadržana.",
+    "top": "Na površinu"
+  },
+  "bar": {
+    "call": "Pozovi",
+    "reserve": "Rezerviši",
+    "wolt": "Wolt"
+  },
+  "img": {
+    "plata": "Velika plata grilovanih morskih plodova: gambori, lignje, riba i špargle",
+    "file": "File bele ribe sa čeri paradajzom i sosom na svetlom tanjiru",
+    "bruskete": "Bruskete sa lososom i bakalarom, čaše belog vina i flaša Malvazije",
+    "pasta": "Paste i čaše crnog i belog vina na terasi, u toplom svetlu zalaska",
+    "gambori": "Gambori na buzari sa njokama",
+    "frame": "Kadar iz konobe Riba Ribi Grize Rep",
+    "logo": "Logo Riba Ribi Grize Rep"
+  }
+}
