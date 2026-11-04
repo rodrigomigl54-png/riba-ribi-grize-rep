@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ meta.title }}</title>
+  <meta name="description" content="{{ meta.description }}">
+  <link rel="canonical" href="<!--@canonical-->">
+  <!--@hreflang-->
+  <meta name="theme-color" content="#06182E">
+  <meta name="color-scheme" content="light">
+
+  <meta property="og:type" content="restaurant.restaurant">
+  <meta property="og:site_name" content="{{ cfg:name }}">
+  <meta property="og:title" content="{{ meta.title }}">
+  <meta property="og:description" content="{{ meta.description }}">
+  <meta property="og:url" content="<!--@canonical-->">
+  <meta property="og:image" content="{{ cfg:siteUrl }}/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ meta.ogAlt }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!--@jsonld-->
+
+  <!-- Pre prvog iscrtavanja: odluka o intru (jednom po sesiji, nikad uz reduced-motion) -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try {
+        var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var seen = sessionStorage.getItem('rr-intro');
+        if (!rm && !seen && !/[?&]nointro/.test(location.search) && !location.hash) d.classList.add('intro-on');
+      } catch (e) {}
+    })();
+  </script>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">{{ a11y.skip }}</a>
+
+  <!-- ═════════════ INTRO ═════════════ -->
+  <div class="intro" id="intro" data-video="<!--@hasvideo-->" aria-hidden="true">
+    <div class="intro__stage">
+      <div class="intro__water" aria-hidden="true"><div class="water"></div></div>
+      <div class="intro__video"></div>
+      <div class="intro__shade"></div>
+      <div class="intro__logo"></div>
+    </div>
+    <svg class="intro__edge" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 0H1440V60C1320 95 1200 30 1080 52S840 110 720 70 480 20 360 58 120 100 0 62Z"/>
+    </svg>
+    <button class="intro__skip" type="button" id="intro-skip">{{ intro.skip }} <span aria-hidden="true">→</span></button>
+  </div>
+
+  <!-- ═════════════ NAVIGACIJA ═════════════ -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="<!--@homehref-->#top" aria-label="{{ a11y.home }}">
+      <img class="nav__logo" src="/assets/brand/logo.svg" alt="" width="44" height="44">
+      <span class="nav__word">Riba Ribi <em>Grize Rep</em></span>
+    </a>
+    <nav class="nav__links" aria-label="{{ a11y.mainNav }}">
+      <a href="#konoba">{{ nav.about }}</a>
+      <a href="#kuhinja">{{ nav.kitchen }}</a>
+      <a href="#ulov">{{ nav.catch }}</a>
+      <a href="#jelovnik">{{ nav.menu }}</a>
+      <a href="#vino">{{ nav.wine }}</a>
+      <a href="#galerija">{{ nav.gallery }}</a>
+      <a href="#rezervacija">{{ nav.contact }}</a>
+    </nav>
+    <div class="nav__end">
+      <div class="lang" role="group" aria-label="{{ a11y.lang }}"><!--@langswitch--></div>
+      <a class="btn btn--sm btn--ghost nav__cta" href="#rezervacija">{{ nav.reserve }}</a>
+      <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="mnav">
+        <span class="sr-only" data-open="{{ nav.open }}" data-close="{{ nav.close }}">{{ nav.open }}</span>
+        <span class="burger__l"></span><span class="burger__l"></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mnav" id="mnav" hidden>
+    <div class="mnav__bg" aria-hidden="true"></div>
+    <nav class="mnav__links" aria-label="{{ a11y.mobileNav }}">
+      <a href="#konoba"><span>01</span>{{ nav.about }}</a>
+      <a href="#kuhinja"><span>02</span>{{ nav.kitchen }}</a>
+      <a href="#ulov"><span>03</span>{{ nav.catch }}</a>
+      <a href="#jelovnik"><span>04</span>{{ nav.menu }}</a>
+      <a href="#vino"><span>05</span>{{ nav.wine }}</a>
+      <a href="#galerija"><span>06</span>{{ nav.gallery }}</a>
+      <a href="#rezervacija"><span>07</span>{{ nav.contact }}</a>
+    </nav>
+    <div class="mnav__foot">
+      <div class="lang"><!--@langswitch--></div>
+      <a href="{{ cfg:phone.href }}">{{ cfg:phone.display }}</a>
+      <a href="{{ cfg:links.instagram }}" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ═════════════ HERO ═════════════ -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero__media" data-video="<!--@hasvideo-->">
+        <div class="water water--hero" aria-hidden="true"></div>
+        <!--@hero-poster-->
+      </div>
+      <div class="hero__shade" aria-hidden="true"></div>
+      <div class="hero__inner">
+        <p class="hero__eyebrow"><span class="line" aria-hidden="true"></span>{{ hero.eyebrow }}<span class="line" aria-hidden="true"></span></p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="sr-only">{{ cfg:name }} — </span>
+          <!--@logo class="hero__logo logo-anim" id="hero"-->
+        </h1>
+        <p class="hero__slogan">{{ hero.slogan }}</p>
+        <p class="hero__sub">{{ hero.sub }}</p>
+        <div class="hero__cta">
+          <a class="btn btn--pearl" href="#rezervacija"><span>{{ hero.reserve }}</span></a>
+          <a class="btn btn--ghost-light" href="{{ cfg:links.wolt }}" target="_blank" rel="noopener"><span>{{ hero.order }}</span><svg class="btn__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6"/></svg></a>
+        </div>
+      </div>
+      <a class="hero__scroll" href="#konoba"><span>{{ hero.scroll }}</span><i aria-hidden="true"></i></a>
+      <svg class="hero__wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40C180 70 360 10 540 34S900 76 1080 44 1320 14 1440 36V80H0Z"/></svg>
+    </section>
+
+    <div class="surface">
+    <!-- ═════════════ O KONOBI ═════════════ -->
+    <section class="about section" id="konoba" aria-labelledby="about-title">
+      <div class="wrap about__grid">
+        <div class="about__head">
+          <p class="eyebrow"><span class="eyebrow__no">01</span>{{ about.label }}</p>
+          <h2 class="mtitle" id="about-title"><span class="mtitle__w">{{ about.title }}</span><span class="mtitle__r" aria-hidden="true">{{ about.title }}</span></h2>
+        </div>
+        <div class="about__body">
+          <p class="lead reveal">{{ about.lead }}</p>
+          <p class="reveal">{{ about.text }}</p>
+          <p class="about__services reveal">{{ about.services }}</p>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="rope" aria-hidden="true"></div>
+        <ul class="pillars" role="list">
+          <li class="pillar reveal">
+            <svg class="pillar__ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24c6-9 18-12 28-6l8-6v24l-8-6C24 36 12 33 6 24Z"/><circle cx="14" cy="22" r="1.4"/></svg>
+            <h3>{{ about.p1t }}</h3><p>{{ about.p1 }}</p>
+          </li>
+          <li class="pillar reveal">
+            <svg class="pillar__ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 30c5-4 9-4 14 0s9 4 14 0 9-4 12-2M4 38c5-4 9-4 14 0s9 4 14 0 9-4 12-2"/><circle cx="34" cy="14" r="6"/></svg>
+            <h3>{{ about.p2t }}</h3><p>{{ about.p2 }}</p>
+          </li>
+          <li class="pillar reveal">
+            <svg class="pillar__ico" viewBox="0 0 48 48" aria-hidden="true"><path d="M16 8h16l-2 14a6 6 0 0 1-12 0Z"/><path d="M24 28v12M17 40h14"/></svg>
+            <h3>{{ about.p3t }}</h3><p>{{ about.p3 }}</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═════════════ IZ KUHINJE ═════════════ -->
+    <section class="kitchen section" id="kuhinja" aria-labelledby="kitchen-title">
+      <div class="wrap">
+        <header class="shead">
+          <p class="eyebrow"><span class="eyebrow__no">02</span>{{ kitchen.label }}</p>
+          <h2 class="mtitle" id="kitchen-title"><span class="mtitle__w">{{ kitchen.title }}</span><span class="mtitle__r" aria-hidden="true">{{ kitchen.title }}</span></h2>
+          <p class="shead__text">{{ kitchen.intro }}</p>
+        </header>
+
+        <div class="dishes">
+          <article class="dcard dcard--hero">
+            <!--@img name="morska-plata" alt="img.plata" sizes="(min-width: 900px) 58vw, 100vw" class="dcard__media fx-water" ratio="4/5"-->
+            <div class="dcard__txt">
+              <h3>{{ kitchen.plata }}</h3>
+              <p>{{ kitchen.plataD }}</p>
+            </div>
+          </article>
+          <article class="dcard dcard--b">
+            <!--@img name="file-bele-ribe" alt="img.file" sizes="(min-width: 900px) 34vw, 100vw" class="dcard__media fx-water" ratio="5/4"-->
+            <div class="dcard__txt">
+              <h3>{{ kitchen.file }}</h3>
+              <p>{{ kitchen.fileD }}</p>
+              <p class="dcard__price"><span class="num"><!--@price dish="Brancin/Orada file"--></span> RSD <small>· 150 g</small></p>
+            </div>
+          </article>
+          <article class="dcard dcard--c">
+            <!--@img name="bruskete-malvazija" alt="img.bruskete" sizes="(min-width: 900px) 34vw, 100vw" class="dcard__media fx-water" ratio="16/10"-->
+            <div class="dcard__txt">
+              <h3>{{ kitchen.bruskete }}</h3>
+              <p>{{ kitchen.brusketeD }}</p>
+              <p class="dcard__price"><span class="num"><!--@price dish="Bruskete sa dimljenim lososom"--></span> RSD <small>· 100 g</small></p>
+            </div>
+          </article>
+          <article class="dcard dcard--d">
+            <!--@img name="pasta-terasa" alt="img.pasta" sizes="(min-width: 900px) 58vw, 100vw" class="dcard__media fx-water" ratio="16/10"-->
+            <div class="dcard__txt">
+              <h3>{{ kitchen.paste }}</h3>
+              <p>{{ kitchen.pasteD }}</p>
+              <p class="dcard__price"><small>{{ kitchen.from }}</small> <span class="num"><!--@price dish="Kremasta palenta sa tartufima u hrskavoj korpi od parmezana"--></span> RSD</p>
+            </div>
+          </article>
+
+          <aside class="recs" aria-labelledby="recs-title">
+            <p class="recs__title" id="recs-title">{{ kitchen.recTitle }}</p>
+            <article class="rec">
+              <div class="porthole" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="34" fill="none" stroke="currentColor"/><path d="M60 30v60M44 34l16 56M76 34 60 90M32 46l28 44M88 46 60 90M30 62q30 0 60 0" fill="none" stroke="currentColor" stroke-width=".9"/></svg></div>
+              <div>
+                <h3>{{ kitchen.kapesante }}</h3>
+                <p>{{ kitchen.kapesanteD }}</p>
+                <p class="dcard__price"><span class="num"><!--@price dish="Capesante – San Žak"--></span> RSD <small>· {{ kitchen.perPiece }}</small></p>
+              </div>
+            </article>
+            <article class="rec">
+              <div class="porthole" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor"><path d="M60 28c14 0 22 10 22 22 0 8-4 13-9 16M60 28c-14 0-22 10-22 22 0 8 4 13 9 16"/><path d="M47 66c-6 10-16 12-22 8M53 68c-2 12-10 20-18 20M60 68c0 12 4 22 12 24M67 68c4 10 12 14 20 12M73 66c8 6 16 4 20-2"/><circle cx="53" cy="48" r="1.6"/><circle cx="67" cy="48" r="1.6"/></svg></div>
+              <div>
+                <h3>{{ kitchen.hobotnica }}</h3>
+                <p>{{ kitchen.hobotnicaD }}</p>
+                <p class="dcard__price"><span class="num"><!--@price dish="Grilovana hobotnica"--></span> RSD <small>· {{ kitchen.per100 }}</small></p>
+              </div>
+            </article>
+            <article class="rec">
+              <div class="porthole porthole--img"><!--@img name="gambori-njoke" alt="img.gambori" sizes="120px" class="porthole__img"--></div>
+              <div>
+                <h3>{{ kitchen.gambori }}</h3>
+                <p>{{ kitchen.gamboriD }}</p>
+                <p class="dcard__price"><span class="num"><!--@price dish="Gambori na buzari"--></span> RSD <small>· {{ kitchen.per100 }}</small></p>
+              </div>
+            </article>
+            <a class="link-arrow" href="#jelovnik">{{ kitchen.seeMenu }} <span aria-hidden="true">→</span></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    </div>
+
+    <!-- ispod površine: od ulova do kontakta pozadina tone u dubinu -->
+    <div class="abyss" id="abyss">
+      <div class="depth" aria-hidden="true"><canvas id="depth-canvas"></canvas><div class="depth__rays"></div></div>
+      <svg class="abyss__surface" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H1440V40C1300 70 1160 20 1000 44S700 86 540 52 220 14 0 50Z"/></svg>
+    <!-- ═════════════ ULOV / VITRINA ═════════════ -->
+    <section class="catch section" id="ulov" aria-labelledby="catch-title">
+      <div class="wrap catch__head">
+        <div>
+          <p class="eyebrow"><span class="eyebrow__no">03</span>{{ catch.label }}</p>
+          <h2 class="mtitle" id="catch-title"><span class="mtitle__w">{{ catch.title }}</span><span class="mtitle__r" aria-hidden="true">{{ catch.title }}</span></h2>
+        </div>
+        <p class="catch__text">{{ catch.text }}</p>
+      </div>
+      <div class="catch__rail" id="catch-rail" tabindex="0" aria-label="{{ catch.title }}">
+        <ul class="catch__track" role="list">
+          <!--@catch-->
+        </ul>
+      </div>
+      <div class="wrap catch__foot">
+        <p class="catch__note">{{ catch.note }}</p>
+        <div class="catch__ctrl" aria-hidden="true"><span class="catch__bar"><i id="catch-progress"></i></span><span class="catch__drag">← {{ catch.drag }} →</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════ JELOVNIK ═════════════ -->
+    <section class="menu section" id="jelovnik" aria-labelledby="menu-title">
+      <div class="wrap">
+        <header class="shead shead--center">
+          <p class="eyebrow"><span class="eyebrow__no">04</span>{{ menu.label }}</p>
+          <h2 class="mtitle" id="menu-title"><span class="mtitle__w">{{ menu.title }}</span><span class="mtitle__r" aria-hidden="true">{{ menu.title }}</span></h2>
+        </header>
+        <!--@menu-->
+      </div>
+    </section>
+
+    <!-- ═════════════ VINO ═════════════ -->
+    <section class="wine section" id="vino" aria-labelledby="wine-title">
+      <div class="wrap wine__grid">
+        <div class="wine__media">
+          <!--@img name="bruskete-malvazija" alt="img.bruskete" sizes="(min-width: 900px) 42vw, 100vw" class="fx-water" ratio="4/5"-->
+          <span class="wine__glint" aria-hidden="true"></span>
+        </div>
+        <div class="wine__txt">
+          <p class="eyebrow"><span class="eyebrow__no">05</span>{{ wine.label }}</p>
+          <h2 class="mtitle mtitle--gold" id="wine-title"><span class="mtitle__w">{{ wine.title }}</span><span class="mtitle__r" aria-hidden="true">{{ wine.title }}</span></h2>
+          <p class="lead">{{ wine.lead }}</p>
+          <p>{{ wine.text }}</p>
+          <figure class="quote">
+            <blockquote lang="en"><p>“{{ wine.quote }}”</p></blockquote>
+            <figcaption>— {{ wine.cite }}</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════ GALERIJA ═════════════ -->
+    <section class="gallery section" id="galerija" aria-labelledby="gallery-title">
+      <div class="wrap gallery__head">
+        <div>
+          <p class="eyebrow"><span class="eyebrow__no">06</span>{{ gallery.label }}</p>
+          <h2 class="mtitle" id="gallery-title"><span class="mtitle__w">{{ gallery.title }}</span><span class="mtitle__r" aria-hidden="true">{{ gallery.title }}</span></h2>
+        </div>
+        <p class="gallery__hint">{{ gallery.hint }} <span aria-hidden="true">→</span></p>
+      </div>
+      <div class="gal" id="gal">
+        <ul class="gal__track" role="list">
+          <!--@gallery-->
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═════════════ RECENZIJE ═════════════ -->
+    <section class="reviews section" id="utisci" aria-labelledby="reviews-title">
+      <div class="wrap">
+        <header class="shead shead--center">
+          <p class="eyebrow"><span class="eyebrow__no">07</span>{{ reviews.label }}</p>
+          <h2 class="mtitle" id="reviews-title"><span class="mtitle__w">{{ reviews.title }}</span><span class="mtitle__r" aria-hidden="true">{{ reviews.title }}</span></h2>
+        </header>
+        <div class="rating reveal">
+          <p class="rating__num" aria-hidden="true">{{ reviews.rating }}</p>
+          <div>
+            <div class="stars" role="img" aria-label="{{ reviews.rating }} / 5">
+              <svg viewBox="0 0 120 22" aria-hidden="true"><defs><linearGradient id="star-fill"><stop offset="96%" stop-color="currentColor"/><stop offset="96%" stop-color="currentColor" stop-opacity=".25"/></linearGradient><path id="star" d="M11 1.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L11 16.1l-5.9 3.2 1.3-6.5L1.5 8.3l6.6-.8Z"/></defs><g fill="url(#star-fill)"><use href="#star"/><use href="#star" x="24"/><use href="#star" x="48"/><use href="#star" x="72"/><use href="#star" x="96"/></g></svg>
+            </div>
+            <p class="rating__count">{{ reviews.count }}</p>
+          </div>
+        </div>
+        <div class="rquotes">
+          <figure class="rquote reveal">
+            <blockquote lang="en"><p>What a fantastic place to visit! First, I was amazed by the taste of octopus, then as a foreigner I was surprised that a waiter spoke different languages! Variety of dishes on the menu to every taste! At the end of the evening, I was treated healthy sweets on the house and even got presents!</p></blockquote>
+            <figcaption><strong>Gulnora Weit</strong><span>{{ reviews.source }}</span></figcaption>
+          </figure>
+          <figure class="rquote reveal">
+            <blockquote lang="en"><p>We had a wonderful time again! Been here 5 years ago and it was a blast, once again a very calm and well experience, also perfect service. We highly recommend to start with scallops and also order malvazija vino, it is amazing!</p></blockquote>
+            <figcaption><strong>Kelly pskr</strong><span>{{ reviews.source }}</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════ REZERVACIJA I KONTAKT ═════════════ -->
+    <section class="contact section" id="rezervacija" aria-labelledby="contact-title">
+      <div class="wrap">
+        <header class="shead">
+          <p class="eyebrow"><span class="eyebrow__no">08</span>{{ contact.label }}</p>
+          <h2 class="mtitle" id="contact-title"><span class="mtitle__w">{{ contact.title }}</span><span class="mtitle__r" aria-hidden="true">{{ contact.title }}</span></h2>
+          <p class="shead__text">{{ contact.lead }}</p>
+        </header>
+
+        <div class="contact__grid">
+          <div class="contact__main">
+            <a class="callbig" href="{{ cfg:phone.href }}">
+              <span class="callbig__ring" aria-hidden="true"></span>
+              <span class="callbig__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l1.6 4.3-2 1.4a12 12 0 0 0 6.7 6.7l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z"/></svg></span>
+              <span class="callbig__txt"><small>{{ contact.callSub }}</small><strong>{{ cfg:phone.display }}</strong></span>
+              <span class="callbig__go">{{ contact.call }} <span aria-hidden="true">→</span></span>
+            </a>
+
+            <form class="rform" id="rform" novalidate>
+              <h3 class="rform__title">{{ contact.formTitle }}</h3>
+              <div class="rform__grid">
+                <div class="field field--full"><label for="f-name">{{ contact.name }}</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+                <div class="field"><label for="f-date">{{ contact.date }}</label><input id="f-date" name="date" type="date" required></div>
+                <div class="field"><label for="f-time">{{ contact.time }}</label><input id="f-time" name="time" type="time" step="900" required></div>
+                <div class="field field--guests">
+                  <label for="f-guests">{{ contact.guests }}</label>
+                  <div class="stepper">
+                    <button type="button" data-step="-1" aria-label="−1">−</button>
+                    <input id="f-guests" name="guests" type="number" inputmode="numeric" min="1" max="40" value="2" required>
+                    <button type="button" data-step="1" aria-label="+1">+</button>
+                  </div>
+                </div>
+                <div class="field field--full"><label for="f-note">{{ contact.note }} <small>({{ contact.optional }})</small></label><textarea id="f-note" name="note" rows="2" placeholder="{{ contact.notePh }}"></textarea></div>
+              </div>
+              <button class="btn btn--brand rform__submit" type="submit"><span id="rform-label">{{ contact.submit }}</span></button>
+
+              <div class="rform__ready" id="rform-ready" hidden tabindex="-1">
+                <p class="rform__ready-title">{{ contact.readyTitle }}</p>
+                <p class="rform__ready-text">{{ contact.readyText }}</p>
+                <pre class="rform__msg" id="rform-msg"></pre>
+                <div class="rform__actions">
+                  <button class="btn btn--brand btn--sm" type="button" id="rform-copy">{{ contact.copy }}</button>
+                  <a class="btn btn--ghost btn--sm" href="{{ cfg:phone.href }}">{{ contact.call }} {{ cfg:phone.display }}</a>
+                  <button class="link-arrow" type="button" id="rform-edit">{{ contact.edit }}</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="contact__side">
+            <div class="info hours" id="hours">
+              <div class="info__head"><h3>{{ contact.hours }}</h3><p class="status" id="status" aria-live="polite"></p></div>
+              <!--@hours-->
+            </div>
+
+            <div class="info">
+              <h3>{{ contact.address }}</h3>
+              <p class="info__big">{{ cfg:address.street }}<br>{{ cfg:address.postalCode }} {{ cfg:address.city }}</p>
+              <div class="map" id="map" data-q="{{ cfg:address.mapsQuery }}" data-title="{{ contact.mapTitle }}">
+                <svg class="map__chart" viewBox="0 0 400 220" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+                  <g fill="none" stroke="currentColor" stroke-width=".7" opacity=".55">
+                    <path d="M-10 160C60 140 110 170 170 150S300 110 410 130"/><path d="M-10 180C70 160 120 190 180 172S310 132 410 152" opacity=".7"/><path d="M-10 200C80 182 130 210 190 194S320 154 410 174" opacity=".5"/>
+                    <path d="M0 40H400M0 90H400M80 0V220M200 0V220M320 0V220" stroke-dasharray="2 5" opacity=".6"/>
+                  </g>
+                  <g transform="translate(200 92)"><circle r="22" fill="none" stroke="currentColor" stroke-width=".8" opacity=".5"/><circle r="5" fill="currentColor"/><path d="M0-36V-26M0 26V36M-36 0H-26M26 0H36" stroke="currentColor"/></g>
+                  <text x="12" y="20" fill="currentColor" font-size="9" letter-spacing="2" opacity=".7">45°15′ N · 19°50′ E</text>
+                </svg>
+                <button class="btn btn--sm btn--pearl map__btn" type="button" id="map-load">{{ contact.map }}</button>
+                <p class="map__note">{{ contact.mapNote }}</p>
+              </div>
+              <a class="link-arrow" id="directions" href="https://www.google.com/maps/dir/?api=1&amp;destination={{ cfg:address.mapsQuery|url }}" target="_blank" rel="noopener">{{ contact.directions }} <span aria-hidden="true">↗</span></a>
+            </div>
+
+            <div class="info info--row">
+              <a class="tile" href="{{ cfg:links.wolt }}" target="_blank" rel="noopener">
+                <small>{{ contact.orderSub }}</small><strong>{{ contact.order }}</strong><span aria-hidden="true">↗</span>
+              </a>
+              <a class="tile" href="{{ cfg:links.instagram }}" target="_blank" rel="noopener">
+                <small>{{ contact.follow }}</small><strong>{{ cfg:links.instagramHandle }}</strong><span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <dl class="facts">
+              <div><dt>{{ contact.priceLabel }}</dt><dd>{{ contact.price }}</dd></div>
+              <div><dt>{{ contact.services }}</dt><dd>{{ contact.servicesList }}</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <!-- ═════════════ FOOTER ═════════════ -->
+  <footer class="footer">
+    <div class="footer__mark" aria-hidden="true">
+      <span class="footer__word" data-text="Riba Ribi Grize Rep">Riba Ribi Grize Rep</span>
+    </div>
+    <div class="wrap footer__grid">
+      <div class="footer__brand">
+        <img class="footer__logo" src="/assets/brand/logo.svg" alt="" width="64" height="64" loading="lazy">
+        <p>{{ cfg:name }}</p>
+      </div>
+      <div>
+        <h2 class="footer__h">{{ contact.address }}</h2>
+        <p>{{ cfg:address.street }}<br>{{ cfg:address.postalCode }} {{ cfg:address.city }}</p>
+        <p><a href="{{ cfg:phone.href }}">{{ cfg:phone.display }}</a></p>
+      </div>
+      <div>
+        <h2 class="footer__h">{{ contact.hours }}</h2>
+        <!--@hours-->
+      </div>
+      <div>
+        <h2 class="footer__h">{{ contact.follow }}</h2>
+        <p><a href="{{ cfg:links.instagram }}" target="_blank" rel="noopener">Instagram ↗</a></p>
+        <p><a href="{{ cfg:links.wolt }}" target="_blank" rel="noopener">Wolt ↗</a></p>
+        <div class="lang"><!--@langswitch--></div>
+      </div>
+    </div>
+    <div class="wrap footer__bottom">
+      <p>© <!--@year--> {{ cfg:name }}. {{ footer.rights }}</p>
+      <a href="#top" class="link-arrow">{{ footer.top }} <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+
+  <!-- donja traka (mobilni) -->
+  <nav class="mbar" id="mbar" aria-label="{{ a11y.quick }}">
+    <a href="{{ cfg:phone.href }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5 9 3l1.6 4.3-2 1.4a12 12 0 0 0 6.7 6.7l1.4-2L21 15l-.5 2.4a2 2 0 0 1-2 1.6A15.5 15.5 0 0 1 5 5.5a2 2 0 0 1 1.6-2Z"/></svg>{{ bar.call }}</a>
+    <a href="#rezervacija" class="mbar__main"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>{{ bar.reserve }}</a>
+    <a href="{{ cfg:links.wolt }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.5 11h-11Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>{{ bar.wolt }}</a>
+  </nav>
+
+  <dialog class="lightbox" id="lightbox" aria-label="{{ gallery.title }}">
+    <button class="lightbox__close" type="button" id="lightbox-close">{{ gallery.close }} <span aria-hidden="true">×</span></button>
+    <img alt="" id="lightbox-img">
+  </dialog>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor__dot"></span></div>
+
+  <!-- SVG filteri: talasanje odraza. #ripple je statičan (jeftin), #ripple-live se animira
+       i koristi ga samo naslov koji je trenutno na ekranu (vidi motion.js). -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <filter id="ripple" x="-5%" y="-20%" width="110%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.09" numOctaves="1" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="ripple-live" x="-5%" y="-20%" width="110%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.012 0.09" numOctaves="1" seed="3" result="n">
+        <animate attributeName="baseFrequency" dur="9s" values="0.012 0.09;0.016 0.12;0.012 0.09" repeatCount="indefinite"/>
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <!--@i18n-->
+  <!--@config-->
+</body>
+</html>

@@ -1,0 +1,213 @@
+{
+  "meta": {
+    "title": "Konoba Riba Ribi Grize Rep — seafood restaurant in Novi Sad",
+    "description": "Fresh fish, seafood and Dalmatian cooking in Novi Sad, Serbia. Bulevar cara Lazara 46. Reservations: +381 21 644 2922. Rated 4.8 ★ on Google.",
+    "ogAlt": "Konoba Riba Ribi Grize Rep — logo and seafood"
+  },
+  "a11y": {
+    "skip": "Skip to content",
+    "home": "Riba Ribi Grize Rep — home",
+    "lang": "Language",
+    "photoSoon": "Photo coming soon",
+    "newTab": "opens in a new tab",
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile navigation",
+    "quick": "Quick actions"
+  },
+  "nav": {
+    "about": "The Konoba",
+    "kitchen": "Kitchen",
+    "catch": "Catch",
+    "menu": "Menu",
+    "wine": "Wine",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "reserve": "Book",
+    "open": "Menu",
+    "close": "Close"
+  },
+  "intro": {
+    "skip": "Skip"
+  },
+  "hero": {
+    "eyebrow": "Konoba · Novi Sad",
+    "slogan": "Where every bite chases the next.",
+    "sub": "Fresh fish, the Adriatic on your plate and a glass of Malvasia — on Bulevar cara Lazara.",
+    "reserve": "Book a table",
+    "order": "Order (Wolt)",
+    "scroll": "Dive in"
+  },
+  "about": {
+    "label": "The Konoba",
+    "title": "The sea, unhurried.",
+    "lead": "Riba Ribi Grize Rep is a konoba where everything revolves around the sea: fresh fish, shellfish and seafood, cooked the Dalmatian and Mediterranean way — the grill, olive oil, a few herbs and nothing more.",
+    "text": "A glass of wine, usually white, comes with every plate, and the evening moves at the pace of a seaside promenade. Our staff speak several languages, so neighbours and travellers from afar feel equally at home.",
+    "p1t": "Fresh fish",
+    "p1": "Choose it from the display and we’ll cook it the way you like — whole or filleted.",
+    "p2t": "Adriatic cooking",
+    "p2": "Dalmatian and Mediterranean plates: the grill, buzara, crepulja, olive oil.",
+    "p3t": "Hospitality",
+    "p3": "Staff who speak several languages and are happy to tell you what’s best today.",
+    "services": "Dine-in · Takeaway · Delivery"
+  },
+  "kitchen": {
+    "label": "From the kitchen",
+    "title": "From the grill, from the sea",
+    "intro": "The dishes our guests choose most often — and a few we warmly recommend to begin with.",
+    "plata": "Grilled seafood",
+    "plataD": "Prawns, squid and fish from the grill, with asparagus and olive oil.",
+    "file": "Sea bass / Bream fillet",
+    "fileD": "White fish fillet with cherry tomatoes and sauce.",
+    "bruskete": "Bruschetta",
+    "brusketeD": "With smoked salmon, and with salt cod “na belo” — with a glass of Malvasia.",
+    "paste": "Pasta & risotto",
+    "pasteD": "Squid ink, clams, prawns “na buzaru” — and a sunset on the terrace.",
+    "gambori": "Prawns “na buzaru”",
+    "gamboriD": "Red or white buzara sauce.",
+    "recTitle": "To begin with",
+    "kapesante": "Scallops — Saint-Jacques",
+    "kapesanteD": "Our guests recommend them to start the evening.",
+    "hobotnica": "Grilled octopus",
+    "hobotnicaD": "Simply grilled — one of our guests’ most-ordered dishes.",
+    "from": "from",
+    "perPiece": "per piece",
+    "per100": "per 100 g",
+    "per150": "150 g",
+    "seeMenu": "Full menu"
+  },
+  "catch": {
+    "label": "The catch",
+    "title": "The catch display",
+    "text": "Pick your whole fish yourself, fresh from the display. It is priced per kilogram and, if you like, we fillet it right in front of you.",
+    "perKg": "per kg",
+    "onRequest": "on request",
+    "drag": "Drag",
+    "note": "Price per kilogram. The final price depends on the weight of the fish you choose."
+  },
+  "menu": {
+    "label": "Menu",
+    "title": "Menu",
+    "search": "Search the menu",
+    "searchPh": "e.g. octopus, risotto…",
+    "posno": "Lenten",
+    "posnoLegend": "lenten (no meat or dairy)",
+    "onRequest": "on request",
+    "perKg": "price per kg",
+    "noResults": "No dishes match your search.",
+    "footnote": "Prices are in Serbian dinars (RSD). Weights are approximate.",
+    "categories": "Categories",
+    "count": "dishes"
+  },
+  "wine": {
+    "label": "Wine",
+    "title": "Malvasia",
+    "lead": "The white wine of the Adriatic coast — fresh, golden, with a herbal note. A natural match for fish, shellfish and bruschetta.",
+    "text": "Here Malvasia isn’t only in the glass: its sauce goes into our sea bass and bream fillet, and the chicken medallions.",
+    "quote": "We highly recommend to start with scallops and also order malvazija vino, it is amazing!",
+    "cite": "Kelly · Google review"
+  },
+  "gallery": {
+    "label": "Gallery",
+    "title": "Moments at the table",
+    "hint": "Drag or scroll",
+    "open": "Enlarge photo",
+    "close": "Close"
+  },
+  "reviews": {
+    "label": "Reviews",
+    "title": "What guests say",
+    "rating": "4.8",
+    "count": "1,481 Google reviews",
+    "source": "Google review",
+    "original": "",
+    "all": "All reviews on Google"
+  },
+  "contact": {
+    "label": "Reservations",
+    "title": "Save a table",
+    "lead": "Calling us is the quickest way. If you prefer, fill in the request — we’ll compose the message for you.",
+    "call": "Call",
+    "callSub": "Reservations by phone",
+    "formTitle": "Reservation request",
+    "name": "Full name",
+    "date": "Date",
+    "time": "Time",
+    "guests": "Guests",
+    "note": "Note",
+    "notePh": "Celebration, terrace, allergies…",
+    "optional": "optional",
+    "submit": "Compose request",
+    "submitWhatsapp": "Send via WhatsApp",
+    "submitEmail": "Send email",
+    "readyTitle": "Your request is ready",
+    "readyText": "A booking is only valid once we confirm it. Copy the message or give us a call.",
+    "copy": "Copy text",
+    "copied": "Copied ✓",
+    "edit": "Edit",
+    "required": "Please fill in this field.",
+    "pastDate": "Please choose today or a future date.",
+    "msgIntro": "Hello! I’d like to book a table at Konoba Riba Ribi Grize Rep.",
+    "msgName": "Name",
+    "msgDate": "Date",
+    "msgTime": "Time",
+    "msgGuests": "Guests",
+    "msgNote": "Note",
+    "emailSubject": "Reservation",
+    "hours": "Opening hours",
+    "openNow": "Open now",
+    "closedNow": "Closed",
+    "until": "until",
+    "opensAt": "Opens at",
+    "opensDay": "Opens",
+    "address": "Address",
+    "directions": "Directions",
+    "map": "Show map",
+    "mapNote": "The map loads from Google Maps",
+    "mapTitle": "Map — Bulevar cara Lazara 46, Novi Sad",
+    "order": "Order online",
+    "orderSub": "Delivery via Wolt",
+    "follow": "Follow us",
+    "price": "2,000–5,000 RSD per person",
+    "priceLabel": "Average price",
+    "services": "Services",
+    "servicesList": "Dine-in · Takeaway · Delivery"
+  },
+  "days": {
+    "short": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
+    "long": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ]
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "top": "Back to the surface"
+  },
+  "bar": {
+    "call": "Call",
+    "reserve": "Book",
+    "wolt": "Wolt"
+  },
+  "img": {
+    "plata": "A large platter of grilled seafood: prawns, squid, fish and asparagus",
+    "file": "White fish fillet with cherry tomatoes and sauce on a light plate",
+    "bruskete": "Bruschetta with salmon and salt cod, glasses of white wine and a bottle of Malvasia",
+    "pasta": "Pasta dishes and glasses of red and white wine on the terrace in warm sunset light",
+    "gambori": "Prawns “na buzaru” with gnocchi",
+    "frame": "A moment at Konoba Riba Ribi Grize Rep",
+    "logo": "Riba Ribi Grize Rep logo"
+  }
+}

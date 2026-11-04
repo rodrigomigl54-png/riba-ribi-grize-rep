@@ -1,0 +1,484 @@
+{
+  "_info": "Jelovnik. Menjaj cene i nazive ovde. price = cena u RSD. perKg = cena po kilogramu. posno = jelo označeno kao posno (✦). onRequest = na zahtev. weight = gramaža kako stoji u jelovniku.",
+  "currency": "RSD",
+  "categories": [
+    {
+      "id": "predjela",
+      "sr": "Predjela",
+      "en": "Starters",
+      "items": [
+        {
+          "sr": "Bakalar na belo",
+          "en": "Salt cod brandade „na belo“",
+          "weight": "100g",
+          "price": 990,
+          "posno": true
+        },
+        {
+          "sr": "Bruskete sa dimljenim lososom",
+          "en": "Bruschetta with smoked salmon",
+          "weight": "100g",
+          "price": 990,
+          "posno": true
+        },
+        {
+          "sr": "Njeguški pršut",
+          "en": "Njeguši prosciutto",
+          "weight": "100g",
+          "price": 940
+        },
+        {
+          "sr": "Pršut Hamon 50% Iberico",
+          "en": "Jamón, 50% Ibérico",
+          "weight": "100g",
+          "price": 1440
+        },
+        {
+          "sr": "Tvrdi kravlji sir",
+          "en": "Aged cow’s milk cheese",
+          "weight": "50g",
+          "price": 690
+        },
+        {
+          "sr": "Sir sa plavim plesnima",
+          "en": "Blue cheese",
+          "weight": "50g",
+          "price": 690
+        },
+        {
+          "sr": "Grilovani kozji sir",
+          "en": "Grilled goat’s cheese",
+          "weight": "150g",
+          "price": 990
+        },
+        {
+          "sr": "Masline",
+          "en": "Olives",
+          "weight": "100g",
+          "price": 440,
+          "posno": true
+        },
+        {
+          "sr": "Capesante – San Žak",
+          "en": "Scallops – Coquilles Saint-Jacques",
+          "weight": "1 kom",
+          "price": 990,
+          "posno": true,
+          "onRequest": true
+        },
+        {
+          "sr": "Gambori u vrelom aromatičnom maslinovom ulju",
+          "en": "Prawns in sizzling aromatic olive oil",
+          "price": 1250
+        },
+        {
+          "sr": "Gostiljski sir",
+          "en": "Gostilje cheese",
+          "weight": "50g",
+          "price": 690
+        },
+        {
+          "sr": "Bruskete sa straćatelom i inćunima",
+          "en": "Bruschetta with stracciatella and anchovies",
+          "weight": "100g",
+          "price": 990
+        },
+        {
+          "sr": "Inćuni",
+          "en": "Anchovies",
+          "weight": "100g",
+          "price": 990,
+          "posno": true
+        },
+        {
+          "sr": "Ostrige",
+          "en": "Oysters",
+          "weight": "1 kom",
+          "price": 1100,
+          "posno": true
+        },
+        {
+          "sr": "Riba u toplom ulju sa vongolama",
+          "en": "Fish in warm olive oil with clams",
+          "price": 3600,
+          "posno": true,
+          "noteSr": "za 2 osobe",
+          "noteEn": "for two"
+        }
+      ]
+    },
+    {
+      "id": "supa",
+      "sr": "Supa",
+      "en": "Soup",
+      "items": [
+        {
+          "sr": "Supa od bele ribe i školjki",
+          "en": "White fish and shellfish soup",
+          "price": 690,
+          "posno": true
+        }
+      ]
+    },
+    {
+      "id": "riba",
+      "sr": "Riba",
+      "en": "Fish & Seafood",
+      "items": [
+        {
+          "sr": "Gambori grilovani",
+          "en": "Grilled prawns",
+          "weight": "100g",
+          "price": 790,
+          "posno": true
+        },
+        {
+          "sr": "Tuna steak",
+          "en": "Tuna steak",
+          "weight": "100g",
+          "price": 790,
+          "posno": true
+        },
+        {
+          "sr": "Gambori na buzari",
+          "en": "Prawns „na buzaru“",
+          "weight": "100g",
+          "price": 890,
+          "posno": true,
+          "noteSr": "crvena ili bela buzara",
+          "noteEn": "red or white buzara sauce"
+        },
+        {
+          "sr": "Brancin/Orada file",
+          "en": "Sea bass / gilt-head bream fillet",
+          "weight": "150g",
+          "price": 1550,
+          "posno": true
+        },
+        {
+          "sr": "Brancin/Orada u umaku od Malvazije, file",
+          "en": "Sea bass / gilt-head bream fillet in Malvasia sauce",
+          "weight": "150g",
+          "price": 1590,
+          "posno": true,
+          "onRequest": true
+        },
+        {
+          "sr": "File u „beurre blanc“ sosu na mladoj blitvi",
+          "en": "Fish fillet in beurre blanc on young chard",
+          "price": 2100
+        },
+        {
+          "sr": "Grilovane lignje Patagonika",
+          "en": "Grilled Patagonian squid",
+          "weight": "350g",
+          "price": 1990,
+          "posno": true
+        },
+        {
+          "sr": "Grilovana hobotnica",
+          "en": "Grilled octopus",
+          "weight": "100g",
+          "price": 2100,
+          "posno": true
+        },
+        {
+          "sr": "Hobotnica u crepulji",
+          "en": "Octopus baked „u crepulji“ (clay dish)",
+          "weight": "100g",
+          "price": 2500,
+          "posno": true
+        },
+        {
+          "sr": "Brodet za dve osobe",
+          "en": "Brodetto fish stew for two",
+          "price": 3600
+        },
+        {
+          "sr": "Brancin/Orada",
+          "en": "Whole sea bass / gilt-head bream",
+          "price": 4900,
+          "perKg": true,
+          "posno": true
+        },
+        {
+          "sr": "Romb",
+          "en": "Turbot",
+          "price": 8500,
+          "perKg": true,
+          "posno": true
+        },
+        {
+          "sr": "Zubatac",
+          "en": "Common dentex",
+          "price": 9900,
+          "perKg": true,
+          "posno": true
+        },
+        {
+          "sr": "San Pjer",
+          "en": "John Dory",
+          "price": 10500,
+          "perKg": true,
+          "posno": true
+        },
+        {
+          "sr": "Jastog / Hlap na taljatelama ili gratiniran",
+          "en": "Spiny lobster / lobster with tagliatelle or gratinéed",
+          "price": 19900,
+          "perKg": true,
+          "posno": true,
+          "onRequest": true
+        }
+      ]
+    },
+    {
+      "id": "prilozi",
+      "sr": "Prilozi",
+      "en": "Sides",
+      "items": [
+        {
+          "sr": "Bareni krompir grilovan sa maslinovim uljem",
+          "en": "Boiled potatoes, grilled with olive oil",
+          "price": 520,
+          "posno": true
+        },
+        {
+          "sr": "Grilovano povrće",
+          "en": "Grilled vegetables",
+          "price": 540,
+          "posno": true
+        },
+        {
+          "sr": "Zapečeni kelj",
+          "en": "Baked savoy cabbage",
+          "price": 540,
+          "posno": true
+        },
+        {
+          "sr": "Mlada blitva",
+          "en": "Young Swiss chard",
+          "price": 590
+        },
+        {
+          "sr": "Dalmatinsko varivo",
+          "en": "Dalmatian vegetable stew",
+          "price": 590,
+          "posno": true
+        },
+        {
+          "sr": "Rižoto sa parmezanom",
+          "en": "Parmesan risotto",
+          "price": 590
+        },
+        {
+          "sr": "Krompir salata sa vasabi sosom",
+          "en": "Potato salad with wasabi dressing",
+          "price": 590,
+          "posno": true
+        },
+        {
+          "sr": "Špargla",
+          "en": "Asparagus",
+          "weight": "150g",
+          "price": 690,
+          "posno": true
+        },
+        {
+          "sr": "Hleb",
+          "en": "Bread",
+          "price": 250
+        }
+      ]
+    },
+    {
+      "id": "meso",
+      "sr": "Jela od mesa",
+      "en": "From the Grill & Land",
+      "items": [
+        {
+          "sr": "Pileći medaljoni u sosu od Malvazije",
+          "en": "Chicken medallions in Malvasia sauce",
+          "price": 1490
+        },
+        {
+          "sr": "Konfitirana jagnjetina sa krompirom",
+          "en": "Lamb confit with potatoes",
+          "price": 2190
+        },
+        {
+          "sr": "Ramstek Dry Age",
+          "en": "Dry-aged rump steak",
+          "weight": "250g",
+          "price": 2900
+        },
+        {
+          "sr": "Biftek u maslinovom ulju sa začinskim biljem",
+          "en": "Beef tenderloin in olive oil with herbs",
+          "weight": "250g",
+          "price": 3600
+        },
+        {
+          "sr": "Surf & Turf",
+          "en": "Surf & Turf",
+          "weight": "250g",
+          "price": 4290
+        }
+      ]
+    },
+    {
+      "id": "paste",
+      "sr": "Paste i rižota",
+      "en": "Pasta & Risotto",
+      "items": [
+        {
+          "sr": "Kremasta palenta sa tartufima u hrskavoj korpi od parmezana",
+          "en": "Creamy polenta with truffles in a crisp Parmesan basket",
+          "price": 1540
+        },
+        {
+          "sr": "Taljatele sa gamborima na buzari",
+          "en": "Tagliatelle with prawns „na buzaru“",
+          "price": 1720
+        },
+        {
+          "sr": "Pasta sa sipinim mastilom sa gamborima na buzari",
+          "en": "Squid-ink pasta with prawns „na buzaru“",
+          "price": 1720,
+          "posno": true
+        },
+        {
+          "sr": "Caneloni sa pršutom",
+          "en": "Cannelloni with prosciutto",
+          "price": 1790
+        },
+        {
+          "sr": "Taljatele sa vongolama i gamborima",
+          "en": "Tagliatelle with clams and prawns",
+          "price": 1830
+        },
+        {
+          "sr": "Pasta sa sipinim mastilom sa vongolama i gamborima",
+          "en": "Squid-ink pasta with clams and prawns",
+          "price": 1830,
+          "posno": true
+        },
+        {
+          "sr": "Rižoto sa kozicama",
+          "en": "Shrimp risotto",
+          "price": 1830
+        },
+        {
+          "sr": "Crni rižoto sa sipom",
+          "en": "Black cuttlefish risotto",
+          "price": 1830
+        },
+        {
+          "sr": "Rižoto sa šafranom i grilovanim gamborima ili tartarom od gambora",
+          "en": "Saffron risotto with grilled prawns or prawn tartare",
+          "price": 1830,
+          "posno": true,
+          "onRequest": true
+        }
+      ]
+    },
+    {
+      "id": "obrok-salate",
+      "sr": "Obrok salate",
+      "en": "Main-course Salads",
+      "items": [
+        {
+          "sr": "Pileća salata",
+          "en": "Chicken salad",
+          "price": 1100
+        },
+        {
+          "sr": "Salata od kozica",
+          "en": "Shrimp salad",
+          "price": 1440
+        },
+        {
+          "sr": "Salata od fileta bele ribe",
+          "en": "White fish fillet salad",
+          "price": 1690
+        },
+        {
+          "sr": "Salata od hobotnice",
+          "en": "Octopus salad",
+          "price": 2500
+        }
+      ]
+    },
+    {
+      "id": "salate",
+      "sr": "Salate",
+      "en": "Salads",
+      "items": [
+        {
+          "sr": "Paradajz salata",
+          "en": "Tomato salad",
+          "price": 440
+        },
+        {
+          "sr": "Rukola i čeri paradajz",
+          "en": "Rocket and cherry tomatoes",
+          "price": 490
+        },
+        {
+          "sr": "Miks zelenih salata sa čeri paradajzom",
+          "en": "Mixed greens with cherry tomatoes",
+          "price": 540
+        },
+        {
+          "sr": "Paradajz sa straćatelom",
+          "en": "Tomatoes with stracciatella",
+          "price": 650
+        }
+      ]
+    },
+    {
+      "id": "deserti-bez-secera",
+      "sr": "Deserti bez dodatog šećera",
+      "en": "Desserts, no added sugar",
+      "items": [
+        {
+          "sr": "Smokvenjak",
+          "en": "Smokvenjak – Dalmatian fig cake",
+          "price": 490
+        },
+        {
+          "sr": "Morska zvezda",
+          "en": "“Starfish” (Morska zvezda)",
+          "price": 490
+        }
+      ]
+    },
+    {
+      "id": "deserti",
+      "sr": "Deserti",
+      "en": "Desserts",
+      "items": [
+        {
+          "sr": "Sladoled, kugla",
+          "en": "Ice cream, per scoop",
+          "price": 250
+        },
+        {
+          "sr": "Sezonska lenja pita",
+          "en": "Seasonal “lazy” pie",
+          "price": 540
+        },
+        {
+          "sr": "Čoko tartuf",
+          "en": "Chocolate truffle",
+          "price": 640
+        },
+        {
+          "sr": "Kolač kuće",
+          "en": "House cake",
+          "price": 640
+        }
+      ]
+    }
+  ]
+}
