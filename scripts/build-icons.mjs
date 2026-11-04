@@ -41,9 +41,9 @@ icoSizes.forEach((s, i) => {
 fs.writeFileSync(pub('favicon.ico'), Buffer.concat([header, ...icoPngs]));
 
 fs.writeFileSync(pub('site.webmanifest'), JSON.stringify({
-  name: 'Konoba Riba Ribi Grize Rep', short_name: 'Riba Ribi Grize Rep', start_url: '/', display: 'browser',
+  name: 'Konoba Riba Ribi Grize Rep', short_name: 'Riba Ribi Grize Rep', start_url: './', display: 'browser',
   background_color: '#06182E', theme_color: '#06182E',
-  icons: [{ src: '/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }],
+  icons: [{ src: 'icon-192.png', sizes: '192x192', type: 'image/png' }, { src: 'icon-512.png', sizes: '512x512', type: 'image/png' }],
 }, null, 2));
 
 /* ---------- Open Graph 1200×630 ---------- */

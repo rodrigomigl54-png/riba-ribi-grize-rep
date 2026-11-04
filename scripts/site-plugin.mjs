@@ -26,7 +26,9 @@ const get = (obj, key) => key.split('.').reduce((o, k) => (o == null ? undefined
 async function loadConfig() {
   // svež import pri svakom renderu (dev server vidi izmene bez restarta)
   const url = pathToFileURL(path.join(ROOT, 'src/config.js')).href + `?t=${Date.now()}`;
-  return (await import(url)).config;
+  const cfg = (await import(url)).config;
+  // SITE_URL iz okruženja (npr. GitHub Pages adresa) ima prednost nad config.js
+  return process.env.SITE_URL ? { ...cfg, siteUrl: process.env.SITE_URL.replace(/\/$/, '') } : cfg;
 }
 
 /* ───────────────────────── helperi ───────────────────────── */
@@ -280,17 +282,31 @@ export async function renderPage(template, lang) {
 }
 
 /* ─────────────── Vite plugin ─────────────── */
+/**
+ * Kada sajt nije u korenu domena (GitHub Pages: /ime-repozitorijuma/), sve apsolutne
+ * putanje iz šablona (/assets/…, /favicon…, /en/, /) dobijaju prefiks. Fajlove koje
+ * Vite sam obrađuje (JS, CSS) prefiksuje sam Vite.
+ */
+export function withBase(html, base) {
+  if (!base || base === '/') return html;
+  const b = base.replace(/\/$/, '');
+  return html
+    .replace(/(["'(\s,])\/(assets\/|favicon|icon-|apple-touch-icon|site\.webmanifest|og-image|en\/)/g, `$1${b}/$2`)
+    .replace(/(href=")\/(#|")/g, `$1${b}/$2`);
+}
+
 export default function sitePlugin() {
   let outDir = 'dist';
+  let base = '/';
   return {
     name: 'rrgr-site',
-    configResolved(c) { outDir = c.build.outDir; },
+    configResolved(c) { outDir = c.build.outDir; base = c.base; },
     transformIndexHtml: {
       order: 'pre',
       async handler(html) {
         const m = html.match(/<!--@page lang="(\w+)"-->/);
-        if (m) return renderPage(read('index.html'), m[1]);
-        return renderPage(html, 'sr');
+        const out = m ? await renderPage(read('index.html'), m[1]) : await renderPage(html, 'sr');
+        return withBase(out, base);
       },
     },
     handleHotUpdate({ file, server }) {
