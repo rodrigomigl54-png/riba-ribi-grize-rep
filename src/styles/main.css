@@ -231,7 +231,7 @@ input, textarea, select { font: inherit; color: inherit; }
   display: block;
   position: fixed; inset: 0; z-index: 120;
   /* rezervna sigurnost: ako JS ne radi, intro nestaje sam */
-  animation: intro-failsafe .8s 14s forwards;
+  animation: intro-failsafe .8s 24s forwards;
 }
 .intro-on body { overflow: hidden; }
 @keyframes intro-failsafe { to { opacity: 0; visibility: hidden; } }
@@ -969,3 +969,10 @@ input, textarea, select { font: inherit; color: inherit; }
   .helm__hint { padding-inline: var(--gutter); }
   .dish { min-height: 210px; }
 }
+
+/* „Prevucite" ispod trake jela (samo na dodir) */
+.mswipe { display: none; justify-content: center; align-items: center; gap: 10px; margin: -6px 0 10px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--sky); }
+.mswipe span { display: inline-block; animation: swipe-hint 1.8s ease-in-out infinite; }
+.mswipe span:last-child { animation-direction: reverse; }
+@keyframes swipe-hint { 50% { transform: translateX(-5px); } }
+@media (hover: none), (pointer: coarse) { .mswipe { display: flex; } }

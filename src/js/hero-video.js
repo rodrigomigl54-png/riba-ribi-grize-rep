@@ -23,7 +23,12 @@ export function initHeroVideo() {
     wrap.appendChild(video);
     video.play().catch(() => {});
   };
-  mount();
+  // dok traje intro, ceo protok ide intro snimku; hero petlja se učitava kad intro krene da nestaje
+  if (document.documentElement.classList.contains('intro-on')) {
+    document.addEventListener('rr:intro-done', mount, { once: true });
+  } else {
+    mount();
+  }
 
   // promena orijentacije (telefon okrenut) → druga verzija snimka
   let last = orientation();

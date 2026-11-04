@@ -18,8 +18,30 @@ import { initLightbox } from './js/lightbox.js';
 import { initMotion } from './js/motion.js';
 import { initCursor } from './js/cursor.js';
 import { initMediaFallback } from './js/media.js';
+import { store } from './js/utils.js';
+
+/**
+ * Telefoni ponekad drže staru stranicu u kešu i posle nove objave.
+ * Uporedimo oznaku verzije iz stranice sa onom na serveru (bez keša) i, ako se razlikuju,
+ * jednom osvežimo stranicu. U dev serveru version.json ne postoji — tada ne radi ništa.
+ */
+function checkFreshVersion() {
+  const mine = document.querySelector('meta[name="build-id"]')?.content;
+  if (!mine || !window.fetch) return;
+  fetch(`${import.meta.env.BASE_URL}version.json?t=${Date.now()}`, { cache: 'no-store' })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((v) => {
+      if (!v || !v.build || v.build === mine) return;
+      const key = `rr-reload-${v.build}`;
+      if (store.get(key)) return;          // najviše jednom po novoj verziji
+      store.set(key, '1');
+      location.reload();
+    })
+    .catch(() => {});
+}
 
 initMediaFallback();
+checkFreshVersion();
 initHours();
 initMenu();
 initCatchRail();

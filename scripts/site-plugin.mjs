@@ -176,6 +176,7 @@ ${panels}
 </section>
 <p class="menu-empty" id="menu-empty" hidden>${esc(t.menu.noResults)}</p>
 </div>
+<p class="mswipe" aria-hidden="true"><span>←</span> ${esc(t.menu.swipe)} <span>→</span></p>
 <div class="mnavbar">
   <button type="button" class="mnavbar__btn" id="mtrack-prev" aria-label="${esc(t.menu.prevDish)}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
   <span class="mnavbar__bar" aria-hidden="true"><i id="mtrack-progress"></i></span>
@@ -221,12 +222,15 @@ function renderHours(config, t) {
 }
 
 function renderGallery(images, t) {
+  // sve fotografije koje je restoran poslao + kadrovi iz videa (frame-*)
   const items = [
-    ['morska-plata', 'l'], ['terasa-vece', 'p'], ['kapesante', 'm'], ['ostrige', 'p'],
-    ['crni-rizoto', 'v'], ['meze-sto', 'l'], ['malvazija', 'p'], ['tuna-steak', 'm'],
-    ['bruskete-losos-bakalar', 'p'], ['lignje-hobotnica', 'v'], ['sto-gozba', 'm'], ['kapesante-vecera', 'p'],
-    ['riba-u-ulju', 'v'], ['frame-1', 'v'], ['frame-2', 'v'], ['frame-3', 'v'], ['frame-4', 'v'],
-  ].filter(([n]) => !n.startsWith('frame-') || images[n]);
+    ['morska-plata', 'l'], ['frame-1', 'v'], ['terasa-vece', 'p'], ['kapesante', 'm'],
+    ['ostrige', 'p'], ['frame-2', 'v'], ['crni-rizoto', 'm'], ['meze-sto', 'l'],
+    ['malvazija', 'p'], ['tuna-steak', 'm'], ['frame-3', 'v'], ['bruskete-losos-bakalar', 'p'],
+    ['lignje-hobotnica', 'p'], ['file-bele-ribe', 'l'], ['sto-gozba', 'm'], ['kapesante-vecera', 'p'],
+    ['frame-4', 'v'], ['riba-u-ulju', 'p'], ['bruskete-stracatela', 'p'], ['jela-sto', 'v'],
+    ['kapesante-hleb', 'l'], ['bruskete-vino', 'p'], ['ostrige-led', 'm'],
+  ].filter(([n]) => images[n]);
   const alt = (n) => t.img[n] || t.img.frame;
   return items.map(([n, size], i) => `<li class="gal__item gal__item--${size}" style="--d:${(i % 4) * 0.7}s">
   <button type="button" class="gal__btn" data-full="${images[n] ? `/assets/images/opt/${n}-${images[n].widths.at(-1)}.webp` : ''}" aria-label="${esc(t.gallery.open)}: ${esc(alt(n))}"${images[n] ? '' : ' disabled'}>
@@ -303,6 +307,7 @@ export async function renderPage(template, lang) {
     hreflang: () => ['sr', 'en'].map((l) => `<link rel="alternate" hreflang="${l}" href="${config.siteUrl}${l === 'en' ? hrefEn : hrefSr}">`).join('') + `<link rel="alternate" hreflang="x-default" href="${config.siteUrl}/">`,
     canonical: () => `${config.siteUrl}${lang === 'en' ? hrefEn : hrefSr}`,
     year: () => String(new Date().getFullYear()),
+    buildid: () => BUILD_ID,
     hasvideo: () => (video ? 'true' : 'false'),
     'hero-poster': () => {
       if (video) return `<picture class="hero__poster"><source media="(orientation: portrait)" srcset="/assets/video/hero-portrait-poster.jpg"><img src="/assets/video/hero-landscape-poster.jpg" alt="" fetchpriority="high" decoding="async"></picture>`;
@@ -364,6 +369,8 @@ export function withBase(html, base) {
     .replace(/(href=")\/(#|")/g, `$1${b}/$2`);
 }
 
+const BUILD_ID = Date.now().toString(36);
+
 export default function sitePlugin() {
   let outDir = 'dist';
   let base = '/';
@@ -387,6 +394,7 @@ export default function sitePlugin() {
       const url = (p) => `  <url><loc>${config.siteUrl}${p}</loc><lastmod>${today}</lastmod>` +
         `<xhtml:link rel="alternate" hreflang="sr" href="${config.siteUrl}/"/><xhtml:link rel="alternate" hreflang="en" href="${config.siteUrl}/en/"/></url>`;
       this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${url('/')}\n${url('/en/')}\n</urlset>\n` });
+      this.emitFile({ type: 'asset', fileName: 'version.json', source: JSON.stringify({ build: BUILD_ID }) });
       this.emitFile({ type: 'asset', fileName: 'robots.txt', source: `User-agent: *\nAllow: /\n\nSitemap: ${config.siteUrl}/sitemap.xml\n` });
     },
     closeBundle() {

@@ -29,11 +29,15 @@ export function initMotion() {
   }
 
   /* --- Lenis --- */
-  const lenis = new Lenis({ lerp: 0.11, smoothWheel: true, wheelMultiplier: 0.95 });
-  lenis.on('scroll', ScrollTrigger.update);
-  gsap.ticker.add((t) => lenis.raf(t * 1000));
-  gsap.ticker.lagSmoothing(0);
-  if (document.documentElement.classList.contains('intro-on')) lenis.stop();
+  // Glatki skrol samo uz miš. Na telefonu je nativni skrol bolji, a Lenis bi
+  // ometao horizontalno prevlačenje traka (jelovnik, vitrina, galerija).
+  const lenis = isFinePointer() ? new Lenis({ lerp: 0.11, smoothWheel: true, wheelMultiplier: 0.95 }) : null;
+  if (lenis) {
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((t) => lenis.raf(t * 1000));
+    gsap.ticker.lagSmoothing(0);
+    if (document.documentElement.classList.contains('intro-on')) lenis.stop();
+  }
 
   /* --- reveal pri ulasku u ekran --- */
   const io = new IntersectionObserver((entries) => {
@@ -116,7 +120,7 @@ export function initMotion() {
   if (withIntro) gsap.set('.hero__eyebrow, .hero__slogan, .hero__sub, .hero__cta, .hero__scroll, .hero__logo', { opacity: 0 });
 
   function playHero() {
-    lenis.start();
+    lenis?.start();
     const logo = $('.hero__logo');
     const mirrored = $$('.logo-row2, .logo-row4', logo);
     if (!withIntro) {
@@ -139,9 +143,13 @@ export function initMotion() {
 
   return {
     lenis,
-    scrollTo: (target) => lenis.scrollTo(target, { offset: target === document.body ? 0 : navOffset() + 1, duration: 1.4 }),
-    stop: () => lenis.stop(),
-    start: () => lenis.start(),
+    scrollTo: (target) => {
+      if (lenis) return lenis.scrollTo(target, { offset: target === document.body ? 0 : navOffset() + 1, duration: 1.4 });
+      const top = target === document.body ? 0 : target.getBoundingClientRect().top + window.scrollY + navOffset() + 1;
+      window.scrollTo({ top, behavior: 'smooth' });
+    },
+    stop: () => lenis?.stop(),
+    start: () => lenis?.start(),
     playHero,
   };
 }
