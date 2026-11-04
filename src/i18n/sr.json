@@ -48,7 +48,8 @@
     "p2": "Dalmatinski i mediteranski tanjiri: žar, buzara, crepulja, maslinovo ulje.",
     "p3t": "Gostoprimstvo",
     "p3": "Osoblje koje govori više jezika i rado preporuči šta je danas najbolje.",
-    "services": "U konobi · Za poneti · Dostava"
+    "services": "U konobi · Za poneti · Dostava",
+    "marquee": "Fotografije iz konobe"
   },
   "kitchen": {
     "label": "Iz kuhinje",
@@ -66,14 +67,25 @@
     "gamboriD": "Crvena ili bela buzara.",
     "recTitle": "Preporuka za početak",
     "kapesante": "Kapesante — San Žak",
-    "kapesanteD": "Gosti ih preporučuju za početak večeri.",
+    "kapesanteD": "Pečene u školjci. Gosti ih preporučuju za početak večeri.",
     "hobotnica": "Grilovana hobotnica",
     "hobotnicaD": "Sa žara, jednostavno — jedno od jela koje gosti najčešće biraju.",
     "from": "od",
     "perPiece": "po komadu",
     "per100": "na 100 g",
     "per150": "150 g",
-    "seeMenu": "Ceo jelovnik"
+    "seeMenu": "Ceo jelovnik",
+    "lignje": "Hobotnica i lignje sa žara",
+    "lignjeD": "Jednostavno, sa žara, uz mladu blitvu.",
+    "rizoto": "Crni rižoto sa sipom",
+    "rizotoD": "Sipino mastilo — taman i bogat, kao more noću.",
+    "ostrige": "Ostrige",
+    "ostrigeD": "Sveže, uz limun.",
+    "tuna": "Tuna steak",
+    "tunaD": "U korici od susama, na zelenom povrću.",
+    "ulje": "Riba u toplom ulju sa vongolama",
+    "uljeD": "Za dve osobe, sa ruzmarinom i čeri paradajzom.",
+    "forTwo": "za 2 osobe"
   },
   "catch": {
     "label": "Ulov",
@@ -96,7 +108,14 @@
     "noResults": "Nema jela za ovu pretragu.",
     "footnote": "Cene su izražene u dinarima. Gramaže su okvirne.",
     "categories": "Kategorije",
-    "count": "jela"
+    "count": "jela",
+    "prevCat": "Prethodna kategorija",
+    "nextCat": "Sledeća kategorija",
+    "wheelHint": "Okrenite kormilo — prevucite ili kliknite kategoriju",
+    "results": "Rezultati pretrage",
+    "prevDish": "Prethodna jela",
+    "nextDish": "Sledeća jela",
+    "swipe": "Prevucite levo-desno"
   },
   "wine": {
     "label": "Vino",
@@ -170,7 +189,12 @@
     "price": "2.000–5.000 RSD po osobi",
     "priceLabel": "Prosečna cena",
     "services": "Usluge",
-    "servicesList": "U konobi · Za poneti · Dostava"
+    "servicesList": "U konobi · Za poneti · Dostava",
+    "submitInstagram": "Pošalji na Instagram",
+    "igReadyTitle": "Poruka je kopirana ✓",
+    "igReadyText": "Otvorio se naš Instagram chat. Samo nalepite poruku (dugi pritisak → Nalepi) i pošaljite. Rezervacija važi kada je potvrdimo.",
+    "igOpen": "Otvori Instagram ponovo",
+    "igNote": "Zahtev stiže u naš Instagram inbox"
   },
   "days": {
     "short": [
@@ -208,6 +232,25 @@
     "pasta": "Paste i čaše crnog i belog vina na terasi, u toplom svetlu zalaska",
     "gambori": "Gambori na buzari sa njokama",
     "frame": "Kadar iz konobe Riba Ribi Grize Rep",
-    "logo": "Logo Riba Ribi Grize Rep"
+    "logo": "Logo Riba Ribi Grize Rep",
+    "morska-plata": "Velika plata grilovanih morskih plodova: gambori, lignje, riba i špargle",
+    "file-bele-ribe": "File bele ribe sa začinskim biljem na sivom tanjiru",
+    "bruskete-losos-bakalar": "Bruskete sa dimljenim lososom i bakalarom na belo, na tanjirima u obliku ribe",
+    "bruskete-stracatela": "Bruskete sa straćatelom, inćunima, maslinama i limunom",
+    "bruskete-vino": "Bruskete sa maslinama i čaša belog vina na stolu",
+    "tuna-steak": "Tuna steak u korici od susama na zelenom povrću",
+    "meze-sto": "Sto sa gamborima, maslinama, cveklom, paradajzom i ribom sa žara",
+    "ostrige": "Sveže ostrige sa limunom na tamnom tanjiru",
+    "ostrige-led": "Ostrige na ledu sa limunom",
+    "jela-sto": "Više jela na stolu: crni rižoto, brodet i palenta",
+    "kapesante": "Kapesante u školjkama na plavom tanjiru",
+    "kapesante-hleb": "Kapesante u školjkama sa grilovanim hlebom",
+    "kapesante-vecera": "Kapesante za večerom",
+    "lignje-hobotnica": "Grilovane lignje i hobotnica sa blitvom",
+    "malvazija": "Flaša Malvazije puna čepova na terasi",
+    "crni-rizoto": "Crni rižoto sa sipom",
+    "terasa-vece": "Terasa konobe uveče pod svetlima, sa vinom i predjelima",
+    "riba-u-ulju": "Riba u toplom maslinovom ulju sa ruzmarinom i čeri paradajzom",
+    "sto-gozba": "Sto pun jela: riba, salata od hobotnice i prilozi"
   }
 }

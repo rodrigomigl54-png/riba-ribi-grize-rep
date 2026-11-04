@@ -8,7 +8,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { $, $$, prefersReducedMotion, isFinePointer, isCapableDevice } from './utils.js';
+import { $, $$, prefersReducedMotion, isFinePointer, isCapableDevice, svgCenter } from './utils.js';
 import { initDepth } from './depth.js';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -118,18 +118,18 @@ export function initMotion() {
   function playHero() {
     lenis.start();
     const logo = $('.hero__logo');
-    const mirrored = $$('.logo-row2 path, .logo-row4 path', logo);
+    const mirrored = $$('.logo-row2, .logo-row4', logo);
     if (!withIntro) {
       gsap.timeline({ defaults: { ease: 'expo.out' } })
         .from($$('.logo-rope', logo), { rotate: -90, transformOrigin: '50% 50%', duration: 2 }, 0)
-        .fromTo(mirrored, { scaleY: -1 }, { scaleY: 1, transformOrigin: '50% 0%', transformBox: 'fill-box', duration: 1.2, ease: 'power3.inOut', stagger: 0.12 }, 0.3);
+        .fromTo(mirrored, { scaleX: -1, svgOrigin: svgCenter }, { scaleX: 1, svgOrigin: svgCenter, clearProps: 'transform', duration: 1.2, ease: 'power3.inOut', stagger: 0.12 }, 0.3);
       return;
     }
     gsap.timeline({ defaults: { ease: 'expo.out' } })
       .fromTo(logo, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 1.6 }, 0)
       .from($$('.logo-rope', logo), { rotate: -120, transformOrigin: '50% 50%', duration: 2.2 }, 0)
       // RIBI i REP se „okrenu" u odraz — igra iz logoa
-      .fromTo(mirrored, { scaleY: -1 }, { scaleY: 1, transformOrigin: '50% 0%', transformBox: 'fill-box', duration: 1.2, ease: 'power3.inOut', stagger: 0.12 }, 0.5)
+      .fromTo(mirrored, { scaleX: -1, svgOrigin: svgCenter }, { scaleX: 1, svgOrigin: svgCenter, clearProps: 'transform', duration: 1.2, ease: 'power3.inOut', stagger: 0.12 }, 0.5)
       .fromTo('.hero__eyebrow', { opacity: 0, y: 12 }, { opacity: 0.9, y: 0, duration: 1.2 }, 0.2)
       .fromTo('.hero__slogan', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1.4 }, 0.45)
       .fromTo('.hero__sub', { opacity: 0, y: 20 }, { opacity: 0.86, y: 0, duration: 1.2 }, 0.65)

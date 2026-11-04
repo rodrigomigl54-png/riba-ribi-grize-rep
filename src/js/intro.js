@@ -6,7 +6,7 @@
  * - bez videa (dok ga vlasnik ne doda) igra se kratka verzija: voda + logo
  */
 import { gsap } from 'gsap';
-import { $, $$, store } from './utils.js';
+import { $, $$, store, svgCenter } from './utils.js';
 import { makeVideo } from './video-src.js';
 
 export function initIntro({ onDone }) {
@@ -40,15 +40,15 @@ export function initIntro({ onDone }) {
   const showLogo = () => {
     if (logoShown) return;
     logoShown = true;
-    const rows = $$('.logo-row path', logo);
-    const mirrored = $$('.logo-row2 path, .logo-row4 path', logo);
+    const rows = $$('.logo-row', logo);
+    const mirrored = $$('.logo-row2, .logo-row4', logo);
     gsap.timeline()
       .to('.intro__shade', { opacity: 1, duration: 1.2, ease: 'power2.out' }, 0)
       .fromTo(logo, { opacity: 0, scale: 0.86, rotate: -40 }, { opacity: 1, scale: 1, rotate: 0, duration: 1.4, ease: 'expo.out' }, 0)
       .from($$('.logo-rope', logo), { opacity: 0, rotate: 90, transformOrigin: '50% 50%', duration: 1.6, ease: 'expo.out' }, 0.05)
       .from(rows, { opacity: 0, y: 14, duration: 0.8, stagger: 0.08, ease: 'power3.out' }, 0.2)
       // reči RIBI i REP prvo stoje uspravno, pa se „okrenu" u odraz
-      .fromTo(mirrored, { scaleY: -1 }, { scaleY: 1, transformOrigin: '50% 0%', transformBox: 'fill-box', duration: 1, ease: 'power3.inOut', stagger: 0.15 }, 0.7);
+      .fromTo(mirrored, { scaleX: -1, svgOrigin: svgCenter }, { scaleX: 1, svgOrigin: svgCenter, clearProps: 'transform', duration: 1, ease: 'power3.inOut', stagger: 0.15 }, 0.7);
   };
 
   const dive = (fast = false) => {
@@ -75,7 +75,19 @@ export function initIntro({ onDone }) {
   window.addEventListener('keydown', (e) => { if (e.key === 'Escape') dive(true); });
 
   const fallback = () => {
-    // kratka verzija bez videa: voda → logo → zaron
+    // kratka verzija bez videa: montaža fotografija (ako postoje) → logo → zaron
+    const photos = $$('.intro__photos img', intro);
+    if (photos.length) {
+      const tl = gsap.timeline();
+      photos.forEach((img, k) => {
+        tl.to(img, { opacity: 1, duration: 0.7, ease: 'power2.out' }, k * 0.9)
+          .to(img, { scale: 1, duration: 2.2, ease: 'none' }, k * 0.9);
+      });
+      const end = photos.length * 0.9;
+      gsap.delayedCall(Math.max(0.3, end - 1.1), showLogo);
+      gsap.delayedCall(end + 1.6, () => dive());
+      return;
+    }
     gsap.delayedCall(0.3, showLogo);
     gsap.delayedCall(3.4, () => dive());
   };

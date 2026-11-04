@@ -48,7 +48,8 @@
     "p2": "Dalmatian and Mediterranean plates: the grill, buzara, crepulja, olive oil.",
     "p3t": "Hospitality",
     "p3": "Staff who speak several languages and are happy to tell you what’s best today.",
-    "services": "Dine-in · Takeaway · Delivery"
+    "services": "Dine-in · Takeaway · Delivery",
+    "marquee": "Photos from the konoba"
   },
   "kitchen": {
     "label": "From the kitchen",
@@ -66,14 +67,25 @@
     "gamboriD": "Red or white buzara sauce.",
     "recTitle": "To begin with",
     "kapesante": "Scallops — Saint-Jacques",
-    "kapesanteD": "Our guests recommend them to start the evening.",
+    "kapesanteD": "Baked in the shell. Our guests recommend them to start the evening.",
     "hobotnica": "Grilled octopus",
     "hobotnicaD": "Simply grilled — one of our guests’ most-ordered dishes.",
     "from": "from",
     "perPiece": "per piece",
     "per100": "per 100 g",
     "per150": "150 g",
-    "seeMenu": "Full menu"
+    "seeMenu": "Full menu",
+    "lignje": "Grilled octopus & squid",
+    "lignjeD": "Simply grilled, with young Swiss chard.",
+    "rizoto": "Black cuttlefish risotto",
+    "rizotoD": "Squid ink — dark and rich, like the sea at night.",
+    "ostrige": "Oysters",
+    "ostrigeD": "Fresh, with lemon.",
+    "tuna": "Tuna steak",
+    "tunaD": "In a sesame crust, on greens.",
+    "ulje": "Fish in warm olive oil with clams",
+    "uljeD": "For two, with rosemary and cherry tomatoes.",
+    "forTwo": "for two"
   },
   "catch": {
     "label": "The catch",
@@ -96,7 +108,14 @@
     "noResults": "No dishes match your search.",
     "footnote": "Prices are in Serbian dinars (RSD). Weights are approximate.",
     "categories": "Categories",
-    "count": "dishes"
+    "count": "dishes",
+    "prevCat": "Previous category",
+    "nextCat": "Next category",
+    "wheelHint": "Turn the helm — drag or tap a category",
+    "results": "Search results",
+    "prevDish": "Previous dishes",
+    "nextDish": "Next dishes",
+    "swipe": "Swipe left or right"
   },
   "wine": {
     "label": "Wine",
@@ -170,7 +189,12 @@
     "price": "2,000–5,000 RSD per person",
     "priceLabel": "Average price",
     "services": "Services",
-    "servicesList": "Dine-in · Takeaway · Delivery"
+    "servicesList": "Dine-in · Takeaway · Delivery",
+    "submitInstagram": "Send via Instagram",
+    "igReadyTitle": "Message copied ✓",
+    "igReadyText": "Our Instagram chat has opened. Just paste the message (long-press → Paste) and send it. A booking is valid once we confirm it.",
+    "igOpen": "Open Instagram again",
+    "igNote": "Your request goes to our Instagram inbox"
   },
   "days": {
     "short": [
@@ -208,6 +232,25 @@
     "pasta": "Pasta dishes and glasses of red and white wine on the terrace in warm sunset light",
     "gambori": "Prawns “na buzaru” with gnocchi",
     "frame": "A moment at Konoba Riba Ribi Grize Rep",
-    "logo": "Riba Ribi Grize Rep logo"
+    "logo": "Riba Ribi Grize Rep logo",
+    "morska-plata": "A large platter of grilled seafood: prawns, squid, fish and asparagus",
+    "file-bele-ribe": "White fish fillet with herbs on a grey plate",
+    "bruskete-losos-bakalar": "Bruschetta with smoked salmon and salt cod on fish-shaped plates",
+    "bruskete-stracatela": "Bruschetta with stracciatella, anchovies, olives and lemon",
+    "bruskete-vino": "Bruschetta with olives and a glass of white wine",
+    "tuna-steak": "Sesame-crusted tuna steak on greens",
+    "meze-sto": "A table with prawns, olives, beetroot, tomatoes and grilled fish",
+    "ostrige": "Fresh oysters with lemon on a dark plate",
+    "ostrige-led": "Oysters on ice with lemon",
+    "jela-sto": "Several dishes on the table: black risotto, brodetto and polenta",
+    "kapesante": "Scallops in their shells on a blue plate",
+    "kapesante-hleb": "Scallops in the shell with grilled bread",
+    "kapesante-vecera": "Scallops at dinner",
+    "lignje-hobotnica": "Grilled squid and octopus with Swiss chard",
+    "malvazija": "A Malvasia bottle filled with corks on the terrace",
+    "crni-rizoto": "Black cuttlefish risotto",
+    "terasa-vece": "The konoba terrace in the evening under string lights, with wine and starters",
+    "riba-u-ulju": "Fish in warm olive oil with rosemary and cherry tomatoes",
+    "sto-gozba": "A table full of dishes: fish, octopus salad and sides"
   }
 }

@@ -79,12 +79,28 @@ npm run icons      # nova Open Graph slika (deljenje na Instagramu/Viberu/WhatsA
 ```
 
 ### Logo
-`public/assets/brand/logo.svg` je vektorska rekonstrukcija (krug, pleteni konopac, redovi RIBA / RIBI u odrazu / GRIZE / REP u odrazu).
-Kada ubaciš `logo.png`, pokreni:
+`public/assets/brand/logo.svg` je automatski precrtan (vektorizovan) iz originalnog `logo.png` — identičan je originalu: plavi krug `#183C68`, beli pleteni konopac, RIBA / RIBI (ogledalo levo-desno) / GRIZE / REP (ogledalo).
+Ako se logo promeni, zameni `public/assets/brand/logo.png` i pokreni:
 
 ```bash
-npm run assets     # uzima tačnu plavu boju iz logo.png → logo.svg, favicon set, OG slika, CSS promenljiva --brand
+pip install potracer pillow numpy
 ```
+```bash
+npm run logo       # logo.svg + verzija za animacije + tačna plava (--brand)
+```
+```bash
+npm run icons      # favicon set i Open Graph slika
+```
+
+### Uvećanje i posvetljavanje fotografija
+Fotografije koje su stigle bile su vrlo male (oko 175×220 px). Uvećane su AI modelom **Real-ESRGAN ×4** (do ~1000–1470 px širine) i blago posvetljene/izoštrene (`scripts/enhance-photos.py`). Rezultat je mnogo bolji od originala, ali **originalne fotografije u punoj rezoluciji (sa telefona/kamere) uvek će izgledati bolje** — kad ih dobiješ, samo ih zameni pod istim imenima.
+
+```bash
+npm run photos -- --model RealESRGAN_x4plus.pth slika.jpg:ime-na-sajtu
+```
+(uputstvo za instalaciju je na vrhu skripte)
+
+Imena fotografija koje sajt koristi: `morska-plata`, `kapesante`, `kapesante-hleb`, `kapesante-vecera`, `lignje-hobotnica`, `crni-rizoto`, `ostrige`, `ostrige-led`, `tuna-steak`, `riba-u-ulju`, `malvazija`, `terasa-vece`, `meze-sto`, `sto-gozba`, `jela-sto`, `file-bele-ribe`, `bruskete-losos-bakalar`, `bruskete-stracatela`, `bruskete-vino` (sve `.jpg` u `public/assets/images/`).
 
 ### Video (intro + hero petlja)
 
@@ -148,11 +164,12 @@ Posle izmene: `npm run build` (u `npm run dev` se stranica sama osveži).
 
 **Rezervacije** — u `src/config.js`:
 ```js
-reservations: { whatsapp: '381641234567', email: '' }
+reservations: { instagram: 'ribaribigrize', whatsapp: '', email: '' }
 ```
-- upisan WhatsApp broj (međunarodni format, samo cifre) → forma otvara WhatsApp sa popunjenom porukom;
-- upisan samo email → otvara email sa popunjenom porukom;
-- ništa (trenutno stanje) → forma sastavi poruku koju gost može da kopira, uz veliko dugme za poziv.
+- **instagram** (trenutno uključeno): gost popuni formu i klikne „Pošalji na Instagram" → poruka se automatski kopira i otvara se vaš Instagram chat (`ig.me/m/ribaribigrize`); gost samo nalepi i pošalje. Instagram ne dozvoljava sajtu da unapred popuni tekst ili pošalje poruku sam — za potpuno automatsko slanje potreban je Meta Business API i server;
+- **whatsapp** (ako se instagram obriše): otvara WhatsApp sa već popunjenom porukom;
+- **email**: otvara email sa popunjenom porukom;
+- sve prazno: poruka za kopiranje + dugme za poziv.
 
 Podaci iz forme se nigde ne šalju niti čuvaju — sve ostaje kod gosta.
 
@@ -186,12 +203,12 @@ Sav sadržaj (uključujući ceo jelovnik) je u samom HTML-u — dobro za Google 
 
 **Ogledalska igra iz logoa** je glavni motiv:
 - svaki naslov sekcije ima odraz koji se pri ulasku u ekran „prevrne" preko vodene linije i blago talasa (SVG filter; animirani talas samo na naslovu koji je trenutno na ekranu, zbog performansi);
-- u logou se reči RIBI i REP prvo pojave uspravno, pa se okrenu u odraz;
+- u logou se reči RIBI i REP prvo pojave normalno, pa se okrenu u ogledalo (kao u originalnom logou);
 - nazivi riba u vitrini i veliki natpis u footeru imaju isti odraz.
 
 **Slogan:** „Zalogaj zalogaju grize rep." — igra na naziv: zalogaji se nižu jedan za drugim kao ribe u logou. EN: „Where every bite chases the next."
 
-**Paleta:** baza je plava iz logoa (`--brand`, trenutno `#1C4C8C` — biće zamenjena tačnom iz logo.png), dubinske nijanse do skoro crne plave, so/biser bela, pesak, kamen rive, zlatno-maslinasti akcenat (Malvazija/maslinovo ulje).
+**Paleta:** baza je tačna plava iz logoa (`--brand` `#183C68`) i tamnije nijanse za dubinu, uz svetloplavu (`--sky` `#9CC9EE`, `--sky-soft` `#E3F0FA`) i belu iz logoa; topla zlatna samo za Malvaziju i zvezdice.
 
 **Tipografija** (sve self-hosted, puna podrška za č ć ž š đ, `font-display: swap`):
 - *Fraunces* (varijabilni, sa „soft" osom) — naslovi; italik za slogan i vino;
@@ -204,7 +221,9 @@ Sav sadržaj (uključujući ceo jelovnik) je u samom HTML-u — dobro za Google 
 - Izdvojeno iz kuhinje: urednički raspored; glavna fotografija ima oblik luka (kameni prozor dalmatinske rive). Kapesante i hobotnica su „Preporuka za početak" (obe se pominju u pravim recenzijama), a mala slika gambora je prikazana kao okrugli brodski „okular" — zato što je niske rezolucije.
 - Morska plata nema cenu jer kao takva ne postoji u jelovniku; ostale kartice vuku cenu direktno iz `menu.json`.
 - Vitrina ulova: horizontalni niz „ledenih" kartica (prevlačenje mišem / prstom, strelice na tastaturi), linijske ilustracije riba, latinski nazivi vrsta, cena po kg. Pravi se automatski od jela sa `perKg`.
-- Jelovnik: kartica „papira" sa duplim okvirom, lepljivi tabovi kategorija koji prate skrol, pretraga koja ne mari za č/ć/š i padeže („hobotnica" nalazi i „hobotnice"), filter „Posno". Na EN verziji ispod engleskog naziva stoji originalni srpski naziv.
+- Jelovnik: kategorije su na **brodskom kormilu** koje se vrti u krug (prevlačenje mišem/prstom, strelice, klik, tasteri ← →); jela izabrane kategorije su na **traci koja se lista levo-desno** (prevlačenje, dugmad, strelice na tastaturi). Pretraga ne mari za č/ć/š i padeže („hobotnica" nalazi i „hobotnice") i prikazuje rezultate iz svih kategorija na istoj traci; filter „Posno". Na EN verziji ispod engleskog naziva stoji originalni srpski naziv. Kartice su za sada bez fotografija — dodaju se kad stignu slike jela.
+- Tonovi: tamnoplava iz logoa + svetloplava i bela (svetle sekcije, kartice, dugmad, kormilo); topla zlatna samo za Malvaziju i zvezdice.
+- „Život": fotografija u hero sekciji sa sporim zumom (dok ne stigne video), pokretna traka fotografija, talasi koji se kreću, mehurići u svetlim sekcijama, intro sa kratkom montažom fotografija.
 - Vino: samo Malvazija, bez izmišljene vinske karte; citat iz prave recenzije; činjenica iz jelovnika da se u umaku od Malvazije sprema file i pileći medaljoni.
 - Galerija: na desktopu se pri skrolu kreće horizontalno (fotografije „plutaju"), na telefonu klasičan horizontalni swipe; klik uvećava fotografiju. Kadrovi iz videa se dodaju automatski.
 - Recenzije: 4,8 ★ / 1.481 + dve prave recenzije u originalu (engleski), sa oznakom „Google recenzija".
@@ -231,7 +250,8 @@ Sav sadržaj (uključujući ceo jelovnik) je u samom HTML-u — dobro za Google 
 - [ ] **Prava na fotografije i video** — da li restoran sme da koristi ove fotografije i reelove na sajtu (i ko je autor).
 - [ ] **Muzika iz reelova** je uklonjena; ako se želi zvuk, mora biti licenciran.
 - [ ] **Domen:** pretpostavio sam `https://rrgr.rs` (za SEO). Menja se u `src/config.js` → `siteUrl`.
-- [ ] **Logo:** rekonstruisan bez originalnog fajla. Proveriti da li su RIBI i REP u originalu okrenuti kao odraz u vodi (vertikalno) — tako sam ih nacrtao — i uporediti font sa originalom kad se ubaci `logo.png`.
+- [ ] **Originalne fotografije u punoj rezoluciji** — trenutne su AI-uvećane sa ~175 px; originali sa telefona će izgledati oštrije.
+- [ ] **Instagram poruke:** proveriti da nalog @ribaribigrize prima poruke od ljudi koje ne prati (Podešavanja → Poruke), da zahtevi ne bi završili u „Zahtevima za poruke".
 - [ ] **Engleski nazivi jela** — naročito „Gostiljski sir" (Gostilje cheese), „Morska zvezda" (dezert — nisam znao šta je, ostavio sam doslovan naziv), „Smokvenjak", „Bakalar na belo".
 - [ ] Tekst „O konobi" i opisi jela — napisani umereno i samo na osnovu datih podataka; neka vlasnik potvrdi ton.
 - [ ] Spoljni linkovi (Wolt, Instagram, Google Maps) su tačno oni koje si dao, ali iz razvojnog okruženja nisu mogli da se otvore (mreža ih blokira) — klikni ih jednom posle objave.

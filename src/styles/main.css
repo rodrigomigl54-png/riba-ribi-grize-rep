@@ -5,25 +5,28 @@
 
 /* ─────────────── 1. Tokeni ─────────────── */
 :root {
-  /* more (od površine ka dubini) */
-  --abyss: #041121;
-  --deep: #071B33;
-  --navy: #0B2747;
-  /* --brand dolazi iz brand.css (uzima se iz logo.png) */
-  --tide: #4A77A8;
-  --mist: #A8BFD3;
-  --foam: #E6EDF1;
-  /* obala */
-  --salt: #FBF8F2;
-  --pearl: #F4EFE5;
-  --sand: #E5D8C0;
-  --stone: #B4A893;
-  --stone-ink: #5E5649;
-  --ink: #0B1A2C;
-  /* Malvazija / maslinovo ulje */
-  --gold: #BBA35C;
-  --gold-soft: #D9C88F;
-  --olive: #8A8442;
+  /* more — tamnoplava baza (iz logoa) ka dubini */
+  --abyss: #061629;
+  --deep: #0A2442;
+  --navy: #12345C;
+  /* --brand = tačna plava iz logoa (#183C68), dolazi iz brand.css */
+  --tide: #3F78B5;
+  /* svetloplava i bela — tonovi iz logoa */
+  --sky: #9CC9EE;
+  --sky-2: #C4E0F6;
+  --sky-soft: #E3F0FA;
+  --mist: #AFCDE8;
+  --foam: #EEF6FC;
+  --salt: #FFFFFF;
+  --pearl: #F6FAFD;
+  --sand: #E3F0FA;          /* (nekadašnji pesak → svetloplava) */
+  --stone: #A3BBD2;
+  --stone-ink: #4A6079;
+  --ink: #0B1F38;
+  /* Malvazija — topli akcenat samo za vino i zvezdice */
+  --gold: #C9A95A;
+  --gold-soft: #E2CC8C;
+  --olive: #6F7F3A;
 
   --f-serif: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   --f-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -64,9 +67,9 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
 ul[role='list'], ol[role='list'] { list-style: none; padding: 0; }
 input, textarea, select { font: inherit; color: inherit; }
-::selection { background: var(--gold-soft); color: var(--ink); }
+::selection { background: var(--sky); color: var(--ink); }
 
-:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 2px; }
+:focus-visible { outline: 2px solid var(--sky); outline-offset: 3px; border-radius: 2px; }
 .sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .skip { position: fixed; left: 12px; top: 12px; z-index: 200; padding: 10px 16px; background: var(--pearl); color: var(--ink); transform: translateY(-160%); transition: transform .3s var(--ease); }
 .skip:focus { transform: none; }
@@ -143,7 +146,7 @@ input, textarea, select { font: inherit; color: inherit; }
 /* „talas" koji se podiže iznutra pri hoveru */
 .btn::before {
   content: ''; position: absolute; inset: -2px; z-index: -1;
-  background: var(--fill, var(--gold-soft));
+  background: var(--fill, var(--sky));
   clip-path: ellipse(80% 0% at 50% 100%);
   transition: clip-path .6s var(--ease-out);
 }
@@ -151,7 +154,7 @@ input, textarea, select { font: inherit; color: inherit; }
 .btn:hover, .btn:focus-visible { color: var(--fg-h, var(--ink)); }
 .btn:active { transform: scale(.98); }
 .btn--sm { min-height: 44px; padding: 0 20px; font-size: 11.5px; }
-.btn--pearl { --bg: var(--pearl); --fg: var(--ink); --fill: var(--gold-soft); }
+.btn--pearl { --bg: var(--salt); --fg: var(--brand); --fill: var(--sky); }
 .btn--brand { --bg: var(--brand); --fg: var(--salt); --fill: var(--ink); --fg-h: var(--salt); }
 .btn--ghost { --bg: transparent; --fg: currentColor; --bd: currentColor; --fill: var(--ink); --fg-h: var(--pearl); }
 .btn--ghost-light { --bg: rgba(5, 18, 33, .18); --fg: var(--salt); --bd: rgba(251, 248, 242, .55); --fill: var(--salt); --fg-h: var(--ink); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
@@ -342,7 +345,7 @@ input, textarea, select { font: inherit; color: inherit; }
 
 /* O konobi */
 .about { padding-bottom: clamp(24px, 4vw, 48px); }
-.kitchen { padding-top: clamp(48px, 7vw, 100px); }
+.kitchen { padding-top: clamp(40px, 5vw, 72px); }
 .about__grid { display: grid; gap: 40px; }
 .about__body { display: grid; gap: 22px; max-width: 640px; color: #26313D; }
 .about__body > p:not(.lead) { font-size: 17px; }
@@ -452,80 +455,129 @@ input, textarea, select { font: inherit; color: inherit; }
 .catch__note { font-size: 13px; color: var(--mist); max-width: 52ch; }
 .catch__ctrl { display: flex; align-items: center; gap: 18px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); }
 .catch__bar { width: 120px; height: 1px; background: rgba(168, 191, 211, .3); position: relative; overflow: hidden; }
-.catch__bar i { position: absolute; inset: 0; background: var(--gold-soft); transform-origin: left; transform: scaleX(var(--p, .2)); }
+.catch__bar i { position: absolute; inset: 0; background: var(--sky); transform-origin: left; transform: scaleX(var(--p, .2)); }
 
-/* ─────────────── 11. Jelovnik ─────────────── */
-.menu-tools { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 18px; }
+/* ─────────────── 11. Jelovnik — kormilo kategorija + traka jela ─────────────── */
+.menu-tools { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 8px; }
 .msearch { position: relative; flex: 1 1 260px; max-width: 420px; }
-.msearch svg { position: absolute; left: 18px; top: 50%; translate: 0 -50%; width: 18px; fill: none; stroke: var(--mist); stroke-width: 1.5; pointer-events: none; }
+.msearch svg { position: absolute; left: 18px; top: 50%; translate: 0 -50%; width: 18px; fill: none; stroke: var(--sky); stroke-width: 1.5; pointer-events: none; }
 .msearch input {
   width: 100%; height: 50px; padding: 0 20px 0 48px; border-radius: 999px;
-  background: rgba(230, 237, 241, .07); border: 1px solid rgba(168, 191, 211, .3); color: var(--salt);
+  background: rgba(156, 201, 238, .1); border: 1px solid rgba(156, 201, 238, .35); color: var(--salt);
   transition: border-color .3s, background .3s;
 }
-.msearch input::placeholder { color: rgba(168, 191, 211, .7); }
-.msearch input:focus { outline: none; border-color: var(--gold-soft); background: rgba(230, 237, 241, .1); }
+.msearch input::placeholder { color: rgba(196, 224, 246, .7); }
+.msearch input:focus { outline: none; border-color: var(--sky); background: rgba(156, 201, 238, .16); }
 .mfilter {
-  height: 50px; padding: 0 22px; border-radius: 999px; border: 1px solid rgba(168, 191, 211, .3);
+  height: 50px; padding: 0 22px; border-radius: 999px; border: 1px solid rgba(156, 201, 238, .35);
   font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--foam);
   transition: background .3s, color .3s, border-color .3s;
 }
-.mfilter span { color: var(--gold-soft); transition: color .3s; }
-.mfilter[aria-pressed='true'] { background: var(--gold-soft); color: var(--ink); border-color: var(--gold-soft); }
+.mfilter span { color: var(--sky); transition: color .3s; }
+.mfilter[aria-pressed='true'] { background: var(--sky); color: var(--ink); border-color: var(--sky); }
 .mfilter[aria-pressed='true'] span { color: var(--ink); }
 
-.mtabs { position: sticky; top: 0; z-index: 5; margin-inline: calc(var(--gutter) * -1); padding: 10px var(--gutter); transition: background .4s, padding-top .4s; }
-.mtabs.is-stuck .mtabs__track { background: rgba(4, 17, 33, .88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 999px; padding: 4px; box-shadow: 0 10px 30px -10px rgba(0,0,0,.5); }
-.mtabs__track { width: fit-content; max-width: 100%; margin-inline: auto; }
-.has-nav .mtabs { top: calc(var(--nav-h) - 1px); }
-.mtabs__track { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; justify-content: flex-start; padding-block: 2px; }
-.mtabs__track::-webkit-scrollbar { display: none; }
-.mtabs__tab { flex: none; padding: 9px 16px; border-radius: 999px; font-size: 13px; color: var(--mist); white-space: nowrap; transition: color .3s, background .3s; }
-.mtabs__tab:hover { color: var(--salt); }
-.mtabs__tab.is-active { background: var(--salt); color: var(--ink); }
-.mtabs__tab.is-empty { opacity: .3; }
+/* Kormilo: kategorije su „ručke" brodskog kormila; okreće se prevlačenjem */
+.helm { --size: min(150vw, 660px); position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; margin-top: 8px; }
+.helm__view {
+  position: relative; height: calc(var(--size) * .44); overflow: hidden; touch-action: pan-y; cursor: grab;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent);
+}
+.helm__view.is-drag { cursor: grabbing; }
+.helm__wheel {
+  position: absolute; left: 50%; top: 18px; width: var(--size); height: var(--size); margin-left: calc(var(--size) / -2);
+  transform: rotate(var(--rot, 0deg)); transition: transform .9s cubic-bezier(.2, .9, .25, 1.15);
+  will-change: transform;
+}
+.helm__view.is-drag .helm__wheel { transition: none; }
+.helm__rim { position: absolute; inset: 9%; width: 82%; height: 82%; overflow: visible; color: var(--sky); }
+.helm__ring { fill: none; stroke: currentColor; stroke-width: 12; opacity: .75; }
+.helm__ring--thin { stroke-width: 1.5; opacity: .5; }
+.helm__spokes { stroke: currentColor; stroke-width: 7; stroke-linecap: round; fill: rgba(156, 201, 238, .3); opacity: .7; }
+.helm__hub { fill: rgba(156, 201, 238, .12); stroke: currentColor; stroke-width: 3; opacity: .7; }
+.helm__hub--in { fill: var(--sky); opacity: .5; }
+.helm__tabs { position: absolute; inset: 0; }
+.helm__item {
+  position: absolute; left: 50%; top: 50%; width: 150px; margin-left: -75px; height: 64px; margin-top: -32px;
+  transform: rotate(calc(var(--i) * 360deg / var(--n))) translateY(calc(var(--size) * -.5 + 34px));
+  display: grid; place-items: center; text-align: center; border-radius: 16px;
+}
+.helm__label {
+  font-family: var(--f-serif); font-weight: 400; font-variation-settings: 'opsz' 36, 'SOFT' 50;
+  font-size: clamp(16px, 2vw, 20px); line-height: 1.12; color: var(--sky-2); text-wrap: balance;
+  transition: color .4s, transform .5s var(--ease-out), opacity .4s;
+  transform: scale(.88); opacity: .75;
+}
+.helm__item:hover .helm__label { color: var(--salt); opacity: 1; }
+.helm__item[aria-selected='true'] .helm__label { color: var(--ink); background: var(--sky); padding: 8px 16px; border-radius: 999px; transform: scale(1.12); opacity: 1; box-shadow: 0 10px 30px -8px rgba(156, 201, 238, .7); }
+.helm__marker { position: absolute; left: 50%; top: 4px; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 0 6px rgba(156, 201, 238, .18), 0 0 24px var(--sky); }
+.helm__arrow { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; border: 1px solid rgba(156, 201, 238, .35); color: var(--sky); transition: background .3s, color .3s, transform .3s; z-index: 2; }
+.helm__arrow svg { width: 20px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.helm__arrow:hover { background: var(--sky); color: var(--ink); }
+.helm__arrow:active { transform: scale(.94); }
+.helm__hint { grid-column: 1 / -1; text-align: center; margin-top: 10px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--mist); opacity: .7; }
 
-.menu-card {
-  position: relative; margin-top: 18px;
-  background: linear-gradient(180deg, var(--salt), var(--pearl));
-  color: var(--ink);
-  padding: clamp(32px, 6vw, 88px) clamp(20px, 6vw, 96px) clamp(28px, 4vw, 56px);
-  box-shadow: 0 60px 120px -40px rgba(0, 0, 0, .7);
-  border-radius: var(--radius);
+/* Panel kategorije */
+.mpanels { position: relative; margin-top: 28px; }
+.mpanel { display: block; }
+.js .mpanel:not(.is-active) { display: none; }
+.mpanel + .mpanel { margin-top: 40px; }
+.js .mpanel + .mpanel { margin-top: 0; }
+.mpanel__head { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin-bottom: 18px; }
+.cat-ico { width: 34px; height: 34px; fill: none; stroke: var(--sky); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.mpanel__title { font-family: var(--f-serif); font-weight: 400; font-variation-settings: 'opsz' 96, 'SOFT' 60; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; color: var(--salt); }
+.mpanel__orig { font-family: var(--f-serif); font-style: italic; font-size: 14px; color: var(--mist); }
+.mpanel__count { margin-left: auto; font-family: var(--f-mono); font-size: 12px; letter-spacing: .1em; color: var(--mist); }
+
+/* Traka jela — prevlači se levo/desno */
+.mtrack { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gutter) * -1); padding: 10px var(--gutter) 26px; cursor: grab; }
+.mtrack::-webkit-scrollbar { display: none; }
+.mtrack.is-drag { cursor: grabbing; scroll-snap-type: none; }
+.mtrack.is-drag * { user-select: none; }
+.mtrack__list { display: flex; gap: 16px; width: max-content; }
+.mtrack__list::after { content: ''; flex: 0 0 1px; }
+
+.dish {
+  position: relative; scroll-snap-align: start; flex: none;
+  width: min(74vw, 290px); min-height: 250px; padding: 22px 22px 20px;
+  display: flex; flex-direction: column; gap: 12px;
+  background: linear-gradient(170deg, var(--salt) 0%, var(--sky-soft) 100%);
+  color: var(--ink); border-radius: 22px;
+  box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .65), inset 0 0 0 1px rgba(255, 255, 255, .7);
+  transition: transform .6s var(--ease-out), box-shadow .6s;
 }
-.menu-card__rope {
-  position: absolute; inset: clamp(8px, 1.2vw, 14px); pointer-events: none;
-  border: 1px solid rgba(28, 76, 140, .2);
-  -webkit-mask: none; mask: none;
-}
-.menu-card__rope::before { content: ''; position: absolute; inset: 4px; border: 1px dashed rgba(28, 76, 140, .16); }
-.mcat { scroll-margin-top: calc(var(--nav-h) + 76px); padding-block: 18px 30px; }
-.mcat + .mcat { border-top: 1px solid rgba(11, 26, 44, .08); padding-top: 42px; }
-.mcat[hidden] { display: none; }
-.mcat__head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 16px; margin-bottom: 22px; }
-.mcat__no { font-family: var(--f-mono); font-size: 11px; color: var(--tide); letter-spacing: .12em; }
-.mcat__title { font-family: var(--f-serif); font-weight: 400; font-variation-settings: 'opsz' 96, 'SOFT' 60; font-size: clamp(30px, 4vw, 46px); line-height: 1.05; letter-spacing: -.015em; color: var(--brand); }
-.mcat__orig { font-size: 13px; color: var(--stone-ink); font-style: italic; font-family: var(--f-serif); }
-.mcat__list { display: grid; column-gap: 64px; }
-.dish { display: grid; grid-template-columns: minmax(0, auto) 1fr auto; align-items: end; gap: 0 12px; padding: 13px 0; border-bottom: 1px solid rgba(11, 26, 44, .06); }
+.dish::before { content: ''; position: absolute; left: 22px; right: 22px; top: 0; height: 4px; border-radius: 0 0 4px 4px; background: linear-gradient(90deg, var(--brand), var(--sky)); }
+.dish:hover { transform: translateY(-6px) rotate(-.6deg); box-shadow: 0 34px 60px -28px rgba(0, 0, 0, .7), inset 0 0 0 1px rgba(255, 255, 255, .7); }
 .dish[hidden] { display: none; }
-.dish__body { min-width: 0; }
-.dish__name { font-size: 16.5px; font-weight: 500; line-height: 1.35; }
-.dish__orig { font-family: var(--f-serif); font-style: italic; font-size: 13.5px; color: var(--stone-ink); line-height: 1.3; }
-.dish__note { font-size: 13.5px; color: var(--stone-ink); }
-.dish__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; margin-top: 3px; font-family: var(--f-mono); font-size: 11px; letter-spacing: .04em; color: var(--stone-ink); }
+.dish__top { display: flex; justify-content: space-between; align-items: center; }
+.dish__no { font-family: var(--f-mono); font-size: 11px; color: var(--tide); letter-spacing: .12em; }
+.dish__posno { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .06em; color: var(--olive); background: rgba(111, 127, 58, .1); padding: 3px 9px; border-radius: 99px; }
+.dish__body { flex: 1; }
+.dish__name { font-family: var(--f-serif); font-weight: 420; font-variation-settings: 'opsz' 36, 'SOFT' 40; font-size: 21px; line-height: 1.2; letter-spacing: -.005em; color: var(--brand); }
+.dish__orig { font-family: var(--f-serif); font-style: italic; font-size: 13.5px; color: var(--stone-ink); margin-top: 4px; }
+.dish__note { font-size: 13.5px; color: var(--stone-ink); margin-top: 6px; }
+.dish__foot { display: flex; align-items: end; justify-content: space-between; gap: 10px; padding-top: 12px; border-top: 1px dashed rgba(24, 60, 104, .2); }
+.dish__meta { display: flex; flex-wrap: wrap; gap: 2px 8px; font-family: var(--f-mono); font-size: 11px; color: var(--stone-ink); }
 .dish__meta i { font-style: normal; opacity: .5; }
-.dish__posno { color: var(--olive); }
 .dish__req { color: var(--tide); }
-.dish__lead { align-self: end; height: 1px; margin-bottom: 8px; background-image: radial-gradient(circle, rgba(11, 26, 44, .35) .7px, transparent 1px); background-size: 6px 2px; background-repeat: repeat-x; min-width: 16px; }
-.dish__price { text-align: right; white-space: nowrap; font-size: 14.5px; line-height: 1.3; }
-.dish__price .num { font-size: 16px; }
+.dish__price { text-align: right; white-space: nowrap; line-height: 1.15; }
+.dish__price .num { font-size: 22px; color: var(--ink); }
 .dish__price abbr { text-decoration: none; font-size: 11px; letter-spacing: .08em; color: var(--stone-ink); }
-.dish__price small { display: block; font-family: var(--f-mono); font-size: 10.5px; color: var(--stone-ink); letter-spacing: .04em; }
-.dish mark { background: rgba(217, 200, 143, .55); color: inherit; border-radius: 2px; }
-.menu-empty { padding: 40px 0; text-align: center; font-family: var(--f-serif); font-style: italic; font-size: 22px; color: var(--stone-ink); }
-.menu-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 28px; padding-top: 18px; border-top: 1px solid rgba(11, 26, 44, .1); font-size: 12.5px; color: var(--stone-ink); }
-.menu-foot span:first-child { color: var(--olive); }
+.dish__price small { display: block; font-family: var(--f-mono); font-size: 10.5px; color: var(--stone-ink); }
+.mpanel.is-enter .dish { animation: dish-in .8s var(--ease-out) both; animation-delay: calc(var(--k, 0) * 60ms); }
+@keyframes dish-in { from { opacity: 0; transform: translateX(60px) rotate(2deg); } }
+
+.mnavbar { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 4px; }
+.mnavbar__btn { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; border: 1px solid rgba(156, 201, 238, .35); color: var(--sky); transition: background .3s, color .3s; }
+.mnavbar__btn svg { width: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+.mnavbar__btn:hover { background: var(--sky); color: var(--ink); }
+.mnavbar__btn:disabled { opacity: .3; pointer-events: none; }
+.mnavbar__bar { width: min(220px, 40vw); height: 2px; border-radius: 2px; background: rgba(156, 201, 238, .25); overflow: hidden; }
+.mnavbar__bar i { display: block; height: 100%; background: var(--sky); transform-origin: left; transform: scaleX(var(--p, .2)); transition: transform .3s; }
+.menu-empty { padding: 40px 0; text-align: center; font-family: var(--f-serif); font-style: italic; font-size: 22px; color: var(--mist); }
+.menu-foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; margin-top: 30px; font-size: 13px; color: var(--mist); text-align: center; }
+.menu-foot span:first-child { color: var(--sky); }
 
 /* ─────────────── 12. Vino ─────────────── */
 .wine__grid { display: grid; gap: 48px; align-items: center; }
@@ -595,12 +647,12 @@ input, textarea, select { font: inherit; color: inherit; }
   position: relative; overflow: hidden; isolation: isolate;
   display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 6px 20px;
   padding: 26px 26px; border-radius: var(--radius);
-  background: var(--gold-soft); color: var(--ink);
+  background: var(--sky); color: var(--ink);
   transition: transform .5s var(--ease);
 }
 .callbig::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--salt); clip-path: circle(0% at 40px 50%); transition: clip-path .8s var(--ease-out); }
 .callbig:hover::before, .callbig:focus-visible::before { clip-path: circle(150% at 40px 50%); }
-.callbig__ico { position: relative; width: 58px; height: 58px; border-radius: 50%; background: var(--ink); color: var(--gold-soft); display: grid; place-items: center; grid-row: span 2; }
+.callbig__ico { position: relative; width: 58px; height: 58px; border-radius: 50%; background: var(--brand); color: var(--salt); display: grid; place-items: center; grid-row: span 2; }
 .callbig__ico svg { width: 24px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linejoin: round; }
 .callbig__ring { position: absolute; left: 26px; top: 50%; width: 58px; height: 58px; margin-top: -29px; border-radius: 50%; border: 1px solid var(--ink); animation: ring 2.8s var(--ease) infinite; opacity: 0; }
 @keyframes ring { 0% { transform: scale(1); opacity: .5; } 100% { transform: scale(1.8); opacity: 0; } }
@@ -642,7 +694,7 @@ input, textarea, select { font: inherit; color: inherit; }
 .info__big { font-family: var(--f-serif); font-size: 26px; line-height: 1.25; font-variation-settings: 'opsz' 48; color: var(--salt); }
 .hours__list { display: grid; gap: 6px; }
 .hours__list li { display: flex; justify-content: space-between; gap: 16px; padding: 8px 0; border-bottom: 1px dashed rgba(168, 191, 211, .2); font-size: 16px; }
-.hours__list li.is-today { color: var(--gold-soft); }
+.hours__list li.is-today { color: var(--sky); }
 .status { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .04em; white-space: nowrap; }
 .status::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--stone); }
 .status.is-open { color: #8FD3A8; }
@@ -708,14 +760,14 @@ input, textarea, select { font: inherit; color: inherit; }
   .has-cursor .cursor {
     display: block; position: fixed; left: 0; top: 0; z-index: 150; pointer-events: none;
     width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; transform: translate3d(-100px, -100px, 0);
-    border: 1px solid rgba(217, 200, 143, .8);
+    border: 1px solid rgba(156, 201, 238, .9);
     mix-blend-mode: difference;
     transition: width .35s var(--ease), height .35s var(--ease), margin .35s var(--ease), background .35s, opacity .3s;
   }
-  .has-cursor .cursor.is-hover { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: rgba(217, 200, 143, .14); }
+  .has-cursor .cursor.is-hover { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: rgba(156, 201, 238, .16); }
   .has-cursor .cursor.is-hidden { opacity: 0; }
-  .cursor__dot { position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px; border-radius: 50%; background: var(--gold-soft); }
-  .ripple-dot { position: fixed; z-index: 149; pointer-events: none; width: 12px; height: 12px; margin: -6px; border-radius: 50%; border: 1px solid rgba(217, 200, 143, .55); mix-blend-mode: difference; animation: ripple-out 1.1s var(--ease-out) forwards; }
+  .cursor__dot { position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px; border-radius: 50%; background: var(--sky); }
+  .ripple-dot { position: fixed; z-index: 149; pointer-events: none; width: 12px; height: 12px; margin: -6px; border-radius: 50%; border: 1px solid rgba(156, 201, 238, .6); mix-blend-mode: difference; animation: ripple-out 1.1s var(--ease-out) forwards; }
   @keyframes ripple-out { to { transform: scale(5); opacity: 0; } }
 }
 
@@ -757,9 +809,7 @@ input, textarea, select { font: inherit; color: inherit; }
   .footer { padding-bottom: 40px; }
   .about__grid { grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; }
   .wine__grid { grid-template-columns: 1fr 1fr; gap: clamp(48px, 8vw, 140px); }
-  .mcat__list { grid-template-columns: 1fr 1fr; }
-  .mtabs__track { justify-content: center; }
-  .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+    .footer__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
   .gal { overflow: visible; }
   .gal.is-pinned { overflow: hidden; }
 }
@@ -780,4 +830,142 @@ input, textarea, select { font: inherit; color: inherit; }
   .js .reveal { opacity: 1; transform: none; }
   .mtitle__r, .mirror-word__r,   .gal__item { animation: none; }
   .depth canvas { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   22. Tonovi logoa (svetloplava + bela) i „život" sajta
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Hero: fotografija sa sporim zumom (dok ne stigne video) */
+.hero__poster--photo img { animation: kenburns 26s ease-in-out infinite alternate; transform-origin: 60% 50%; }
+@keyframes kenburns { from { transform: scale(1.04) translate3d(0, 0, 0); } to { transform: scale(1.16) translate3d(-2%, -1.5%, 0); } }
+.hero__shade {
+  background:
+    linear-gradient(180deg, rgba(6, 22, 41, .62) 0%, rgba(6, 22, 41, .2) 28%, rgba(24, 60, 104, .28) 60%, rgba(6, 22, 41, .85) 100%),
+    radial-gradient(55% 42% at 50% 46%, rgba(6, 22, 41, .42), transparent 72%);
+}
+.hero__logo { filter: drop-shadow(0 24px 50px rgba(6, 22, 41, .55)); }
+.hero__eyebrow .line { background: var(--sky); opacity: 1; }
+.hero__eyebrow { color: var(--sky-2); }
+.hero__wave { fill: var(--salt); }
+
+/* Talasi koji se kreću (periodični SVG, animira se samo transform) */
+.waves { position: absolute; left: 0; right: 0; height: 40px; overflow: hidden; pointer-events: none; z-index: 1; }
+.waves::before, .waves::after {
+  content: ''; position: absolute; inset: 0 auto 0 0; width: 200%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='46' viewBox='0 0 480 46'%3E%3Cpath d='M0 24c60 0 60-14 120-14s60 14 120 14 60-14 120-14 60 14 120 14v22H0z' fill='%239CC9EE'/%3E%3C/svg%3E") repeat-x 0 100% / 480px 46px;
+  animation: wave-move 14s linear infinite; opacity: .3;
+}
+.waves::after { animation-duration: 9s; animation-direction: reverse; opacity: .2; transform: translateY(8px); }
+@keyframes wave-move { to { transform: translate3d(-480px, 0, 0); } }
+.waves--hero { bottom: clamp(14px, 3vw, 44px); }
+.waves--abyss { top: clamp(20px, 4vw, 60px); }
+.waves--abyss::before, .waves--abyss::after { filter: hue-rotate(0deg) brightness(.9); }
+
+/* Svetle sekcije: bela → svetloplava (tonovi logoa) */
+.surface {
+  background:
+    radial-gradient(60% 30% at 85% 6%, rgba(156, 201, 238, .35), transparent 70%),
+    radial-gradient(50% 25% at 8% 40%, rgba(196, 224, 246, .55), transparent 70%),
+    linear-gradient(180deg, var(--salt) 0%, var(--sky-soft) 38%, var(--salt) 64%, var(--sky-2) 100%);
+}
+.abyss__surface { fill: var(--sky-2); }
+.eyebrow { color: var(--tide); }
+.eyebrow__no { color: var(--brand); opacity: 1; }
+.abyss .eyebrow { color: var(--sky); }
+.abyss .eyebrow__no { color: var(--sky-2); }
+.mtitle { color: var(--brand); }
+.abyss .mtitle { color: var(--salt); }
+.lead { color: var(--ink); }
+
+/* mehurići koji se dižu kroz svetle sekcije */
+.bubbles { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.bubbles i {
+  position: absolute; bottom: -40px; left: var(--x); width: var(--s); height: var(--s); border-radius: 50%;
+  border: 1px solid rgba(24, 60, 104, .18); background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .9), rgba(156, 201, 238, .25) 60%, transparent 70%);
+  animation: rise var(--t) linear infinite; animation-delay: var(--d);
+}
+@keyframes rise { to { transform: translate3d(var(--dx, 20px), calc(-100vh - 120px), 0); opacity: 0; } }
+.about, .kitchen { position: relative; }
+.about > .wrap, .kitchen > .wrap { position: relative; z-index: 1; }
+
+/* Stubovi: ikone u svetloplavim krugovima */
+.pillar__ico { width: 64px; height: 64px; padding: 14px; border-radius: 50%; background: var(--salt); box-shadow: 0 10px 30px -12px rgba(24, 60, 104, .35), inset 0 0 0 1px rgba(156, 201, 238, .6); }
+.pillar { padding: 26px; border-radius: 24px; background: rgba(255, 255, 255, .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); box-shadow: inset 0 0 0 1px rgba(156, 201, 238, .45); transition: transform .6s var(--ease-out), box-shadow .6s; }
+.pillar:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -30px rgba(24, 60, 104, .45), inset 0 0 0 1px var(--sky); }
+.pillar h3 { color: var(--brand); }
+.rope { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='12' viewBox='0 0 14 12'%3E%3Cpath d='M1 11.2C4 9 9 3 13 .8' fill='none' stroke='%239CC9EE' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
+
+/* Pokretna traka fotografija */
+.marquee {
+  position: relative; display: flex; overflow: hidden; margin-top: clamp(48px, 7vw, 90px); padding-block: 24px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__track { display: flex; gap: 18px; padding-right: 18px; flex: none; animation: marquee 60s linear infinite; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translate3d(-100%, 0, 0); } }
+.marquee__item { flex: none; width: clamp(180px, 22vw, 280px); }
+.marquee__item .media { --ratio: 4 / 5; border-radius: 22px; box-shadow: 0 24px 40px -24px rgba(24, 60, 104, .55); transition: transform .6s var(--ease-out); }
+.marquee__item:nth-child(odd) .media { transform: rotate(-2deg) translateY(8px); }
+.marquee__item:nth-child(even) .media { transform: rotate(1.5deg) translateY(-6px); }
+.marquee__item:hover .media { transform: rotate(0) scale(1.04); }
+
+/* Kartice jela u kuhinji: zaobljenije, sa svetloplavim okvirom */
+.dcard .media { border-radius: 26px; box-shadow: 0 40px 70px -40px rgba(24, 60, 104, .6); }
+.dcard--hero .media { border-radius: 240px 240px 26px 26px; }
+.dcard__txt h3, .rec h3 { color: var(--brand); }
+.recs { background: linear-gradient(170deg, var(--salt), var(--sky-soft)); border: 0; border-radius: 28px; box-shadow: 0 40px 70px -45px rgba(24, 60, 104, .6), inset 0 0 0 1px rgba(156, 201, 238, .7); }
+.recs::before { border-color: rgba(156, 201, 238, .8); border-radius: 22px; }
+.porthole { color: var(--brand); background: var(--sky-soft); box-shadow: inset 0 0 0 1px rgba(24, 60, 104, .25), 0 0 0 5px var(--salt), 0 0 0 7px var(--sky); }
+
+/* Dubina: tamnoplava iz logoa sa svetloplavim sjajem */
+.abyss {
+  background:
+    radial-gradient(70% 22% at 50% 0%, rgba(156, 201, 238, .28), transparent 70%),
+    linear-gradient(180deg, #1F4C80 0%, var(--brand) 12%, var(--navy) 34%, var(--deep) 60%, var(--abyss) 100%);
+}
+.catch__card { border-radius: 24px; background: radial-gradient(140% 70% at 50% 0%, #fff, rgba(255, 255, 255, 0) 60%), linear-gradient(170deg, var(--salt) 0%, var(--sky-2) 100%); }
+.catch__card::before { border-radius: 18px; border-color: rgba(24, 60, 104, .16); }
+.catch__name { color: var(--brand); }
+.helm.is-muted .helm__view, .helm.is-muted .helm__arrow { opacity: .35; }
+
+/* Vino i recenzije */
+.wine__media .media { border-radius: 999px 999px 26px 26px; }
+.rquote { border-radius: 26px; border-color: rgba(156, 201, 238, .3); background: linear-gradient(180deg, rgba(156, 201, 238, .1), rgba(156, 201, 238, .03)); }
+.rquote::before { color: var(--sky); }
+
+/* Rezervacija */
+.callbig { border-radius: 26px; background: linear-gradient(120deg, var(--sky) 0%, var(--sky-2) 100%); }
+.callbig__ring { border-color: var(--brand); }
+.rform { border-radius: 26px; background: linear-gradient(180deg, var(--salt), var(--sky-soft)); }
+.rform__title { color: var(--brand); }
+.ig-ico { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; flex: none; }
+.ig-ico circle:last-child { fill: currentColor; stroke: none; }
+.btn--ig { --bg: linear-gradient(90deg, #833AB4, #E1306C 55%, #F77737); --fg: #fff; --fill: var(--brand); --fg-h: #fff; background: linear-gradient(90deg, #833AB4, #E1306C 55%, #F77737); }
+.rform__ignote { margin-top: 10px; text-align: center; font-size: 12.5px; color: var(--stone-ink); }
+.tile { border-radius: 20px; }
+.tile:hover { background: var(--sky); border-color: var(--sky); }
+.map { border-radius: 22px; }
+.mbar__main { background: var(--sky) !important; }
+
+/* Intro bez videa: kratka montaža fotografija */
+.intro__photos { position: absolute; inset: 0; }
+.intro__photos img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.12); }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track, .waves::before, .waves::after, .bubbles i, .hero__poster--photo img { animation: none !important; }
+}
+
+/* Kormilo na telefonu: pun ekran, strelice preko točka, više vidljivih kategorija */
+@media (max-width: 767px) {
+  .helm { --size: 132vw; display: block; margin-inline: calc(var(--gutter) * -1); }
+  .helm__view { -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+  .helm__arrow { position: absolute; top: calc(var(--size) * .44 - 30px); width: 44px; height: 44px; background: rgba(6, 22, 41, .55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .helm__arrow--prev { left: var(--gutter); }
+  .helm__arrow--next { right: var(--gutter); }
+  .helm__item { width: 120px; margin-left: -60px; }
+  .helm__label { font-size: 15px; }
+  .helm__hint { padding-inline: var(--gutter); }
+  .dish { min-height: 210px; }
 }

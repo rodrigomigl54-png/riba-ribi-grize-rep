@@ -49,6 +49,7 @@
   <div class="intro" id="intro" data-video="<!--@hasvideo-->" aria-hidden="true">
     <div class="intro__stage">
       <div class="intro__water" aria-hidden="true"><div class="water"></div></div>
+      <!--@intro-photos-->
       <div class="intro__video"></div>
       <div class="intro__shade"></div>
       <div class="intro__logo"></div>
@@ -124,12 +125,14 @@
         </div>
       </div>
       <a class="hero__scroll" href="#konoba"><span>{{ hero.scroll }}</span><i aria-hidden="true"></i></a>
+      <div class="waves waves--hero" aria-hidden="true"></div>
       <svg class="hero__wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40C180 70 360 10 540 34S900 76 1080 44 1320 14 1440 36V80H0Z"/></svg>
     </section>
 
     <div class="surface">
     <!-- ═════════════ O KONOBI ═════════════ -->
     <section class="about section" id="konoba" aria-labelledby="about-title">
+      <div class="bubbles" aria-hidden="true"><i style="--x:6%;--s:10px;--t:22s;--d:-3s;--dx:30px"></i><i style="--x:18%;--s:6px;--t:18s;--d:-9s;--dx:-20px"></i><i style="--x:33%;--s:14px;--t:26s;--d:-14s;--dx:40px"></i><i style="--x:52%;--s:8px;--t:20s;--d:-6s;--dx:-30px"></i><i style="--x:67%;--s:12px;--t:24s;--d:-18s;--dx:25px"></i><i style="--x:81%;--s:7px;--t:19s;--d:-2s;--dx:-15px"></i><i style="--x:92%;--s:16px;--t:30s;--d:-11s;--dx:35px"></i></div>
       <div class="wrap about__grid">
         <div class="about__head">
           <p class="eyebrow"><span class="eyebrow__no">01</span>{{ about.label }}</p>
@@ -158,10 +161,12 @@
           </li>
         </ul>
       </div>
+      <!--@marquee-->
     </section>
 
     <!-- ═════════════ IZ KUHINJE ═════════════ -->
     <section class="kitchen section" id="kuhinja" aria-labelledby="kitchen-title">
+      <div class="bubbles" aria-hidden="true"><i style="--x:12%;--s:10px;--t:22s;--d:-3s;--dx:30px"></i><i style="--x:18%;--s:6px;--t:18s;--d:-9s;--dx:-20px"></i><i style="--x:33%;--s:14px;--t:26s;--d:-14s;--dx:40px"></i><i style="--x:52%;--s:8px;--t:20s;--d:-6s;--dx:-30px"></i><i style="--x:67%;--s:12px;--t:24s;--d:-18s;--dx:25px"></i><i style="--x:81%;--s:7px;--t:19s;--d:-2s;--dx:-15px"></i><i style="--x:92%;--s:16px;--t:30s;--d:-11s;--dx:35px"></i></div>
       <div class="wrap">
         <header class="shead">
           <p class="eyebrow"><span class="eyebrow__no">02</span>{{ kitchen.label }}</p>
@@ -171,61 +176,61 @@
 
         <div class="dishes">
           <article class="dcard dcard--hero">
-            <!--@img name="morska-plata" alt="img.plata" sizes="(min-width: 900px) 58vw, 100vw" class="dcard__media fx-water" ratio="4/5"-->
+            <!--@img name="morska-plata" alt="img.morska-plata" sizes="(min-width: 900px) 58vw, 100vw" class="dcard__media fx-water" ratio="4/5"-->
             <div class="dcard__txt">
               <h3>{{ kitchen.plata }}</h3>
               <p>{{ kitchen.plataD }}</p>
             </div>
           </article>
           <article class="dcard dcard--b">
-            <!--@img name="file-bele-ribe" alt="img.file" sizes="(min-width: 900px) 34vw, 100vw" class="dcard__media fx-water" ratio="5/4"-->
+            <!--@img name="kapesante" alt="img.kapesante" sizes="(min-width: 900px) 34vw, 100vw" class="dcard__media fx-water" ratio="5/4"-->
             <div class="dcard__txt">
-              <h3>{{ kitchen.file }}</h3>
-              <p>{{ kitchen.fileD }}</p>
-              <p class="dcard__price"><span class="num"><!--@price dish="Brancin/Orada file"--></span> RSD <small>· 150 g</small></p>
+              <h3>{{ kitchen.kapesante }}</h3>
+              <p>{{ kitchen.kapesanteD }}</p>
+              <p class="dcard__price"><span class="num"><!--@price dish="Capesante – San Žak"--></span> RSD <small>· {{ kitchen.perPiece }}</small></p>
             </div>
           </article>
           <article class="dcard dcard--c">
-            <!--@img name="bruskete-malvazija" alt="img.bruskete" sizes="(min-width: 900px) 34vw, 100vw" class="dcard__media fx-water" ratio="16/10"-->
+            <!--@img name="lignje-hobotnica" alt="img.lignje-hobotnica" sizes="(min-width: 900px) 34vw, 100vw" class="dcard__media fx-water" ratio="16/11"-->
             <div class="dcard__txt">
-              <h3>{{ kitchen.bruskete }}</h3>
-              <p>{{ kitchen.brusketeD }}</p>
-              <p class="dcard__price"><span class="num"><!--@price dish="Bruskete sa dimljenim lososom"--></span> RSD <small>· 100 g</small></p>
+              <h3>{{ kitchen.lignje }}</h3>
+              <p>{{ kitchen.lignjeD }}</p>
+              <p class="dcard__price"><small>{{ kitchen.from }}</small> <span class="num"><!--@price dish="Grilovane lignje Patagonika"--></span> RSD</p>
             </div>
           </article>
           <article class="dcard dcard--d">
-            <!--@img name="pasta-terasa" alt="img.pasta" sizes="(min-width: 900px) 58vw, 100vw" class="dcard__media fx-water" ratio="16/10"-->
+            <!--@img name="crni-rizoto" alt="img.crni-rizoto" sizes="(min-width: 900px) 58vw, 100vw" class="dcard__media fx-water" ratio="16/11"-->
             <div class="dcard__txt">
-              <h3>{{ kitchen.paste }}</h3>
-              <p>{{ kitchen.pasteD }}</p>
-              <p class="dcard__price"><small>{{ kitchen.from }}</small> <span class="num"><!--@price dish="Kremasta palenta sa tartufima u hrskavoj korpi od parmezana"--></span> RSD</p>
+              <h3>{{ kitchen.rizoto }}</h3>
+              <p>{{ kitchen.rizotoD }}</p>
+              <p class="dcard__price"><span class="num"><!--@price dish="Crni rižoto sa sipom"--></span> RSD</p>
             </div>
           </article>
 
           <aside class="recs" aria-labelledby="recs-title">
             <p class="recs__title" id="recs-title">{{ kitchen.recTitle }}</p>
             <article class="rec">
-              <div class="porthole" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="34" fill="none" stroke="currentColor"/><path d="M60 30v60M44 34l16 56M76 34 60 90M32 46l28 44M88 46 60 90M30 62q30 0 60 0" fill="none" stroke="currentColor" stroke-width=".9"/></svg></div>
+              <div class="porthole porthole--img"><!--@img name="ostrige" alt="img.ostrige" sizes="120px" class="porthole__img"--></div>
               <div>
-                <h3>{{ kitchen.kapesante }}</h3>
-                <p>{{ kitchen.kapesanteD }}</p>
-                <p class="dcard__price"><span class="num"><!--@price dish="Capesante – San Žak"--></span> RSD <small>· {{ kitchen.perPiece }}</small></p>
+                <h3>{{ kitchen.ostrige }}</h3>
+                <p>{{ kitchen.ostrigeD }}</p>
+                <p class="dcard__price"><span class="num"><!--@price dish="Ostrige"--></span> RSD <small>· {{ kitchen.perPiece }}</small></p>
               </div>
             </article>
             <article class="rec">
-              <div class="porthole" aria-hidden="true"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor"><path d="M60 28c14 0 22 10 22 22 0 8-4 13-9 16M60 28c-14 0-22 10-22 22 0 8 4 13 9 16"/><path d="M47 66c-6 10-16 12-22 8M53 68c-2 12-10 20-18 20M60 68c0 12 4 22 12 24M67 68c4 10 12 14 20 12M73 66c8 6 16 4 20-2"/><circle cx="53" cy="48" r="1.6"/><circle cx="67" cy="48" r="1.6"/></svg></div>
+              <div class="porthole porthole--img"><!--@img name="tuna-steak" alt="img.tuna-steak" sizes="120px" class="porthole__img"--></div>
               <div>
-                <h3>{{ kitchen.hobotnica }}</h3>
-                <p>{{ kitchen.hobotnicaD }}</p>
-                <p class="dcard__price"><span class="num"><!--@price dish="Grilovana hobotnica"--></span> RSD <small>· {{ kitchen.per100 }}</small></p>
+                <h3>{{ kitchen.tuna }}</h3>
+                <p>{{ kitchen.tunaD }}</p>
+                <p class="dcard__price"><span class="num"><!--@price dish="Tuna steak"--></span> RSD <small>· {{ kitchen.per100 }}</small></p>
               </div>
             </article>
             <article class="rec">
-              <div class="porthole porthole--img"><!--@img name="gambori-njoke" alt="img.gambori" sizes="120px" class="porthole__img"--></div>
+              <div class="porthole porthole--img"><!--@img name="riba-u-ulju" alt="img.riba-u-ulju" sizes="120px" class="porthole__img"--></div>
               <div>
-                <h3>{{ kitchen.gambori }}</h3>
-                <p>{{ kitchen.gamboriD }}</p>
-                <p class="dcard__price"><span class="num"><!--@price dish="Gambori na buzari"--></span> RSD <small>· {{ kitchen.per100 }}</small></p>
+                <h3>{{ kitchen.ulje }}</h3>
+                <p>{{ kitchen.uljeD }}</p>
+                <p class="dcard__price"><span class="num"><!--@price dish="Riba u toplom ulju sa vongolama"--></span> RSD <small>· {{ kitchen.forTwo }}</small></p>
               </div>
             </article>
             <a class="link-arrow" href="#jelovnik">{{ kitchen.seeMenu }} <span aria-hidden="true">→</span></a>
@@ -239,6 +244,7 @@
     <!-- ispod površine: od ulova do kontakta pozadina tone u dubinu -->
     <div class="abyss" id="abyss">
       <div class="depth" aria-hidden="true"><canvas id="depth-canvas"></canvas><div class="depth__rays"></div></div>
+      <div class="waves waves--abyss" aria-hidden="true"></div>
       <svg class="abyss__surface" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H1440V40C1300 70 1160 20 1000 44S700 86 540 52 220 14 0 50Z"/></svg>
     <!-- ═════════════ ULOV / VITRINA ═════════════ -->
     <section class="catch section" id="ulov" aria-labelledby="catch-title">
@@ -275,7 +281,7 @@
     <section class="wine section" id="vino" aria-labelledby="wine-title">
       <div class="wrap wine__grid">
         <div class="wine__media">
-          <!--@img name="bruskete-malvazija" alt="img.bruskete" sizes="(min-width: 900px) 42vw, 100vw" class="fx-water" ratio="4/5"-->
+          <!--@img name="malvazija" alt="img.malvazija" sizes="(min-width: 900px) 42vw, 100vw" class="fx-water" ratio="4/5"-->
           <span class="wine__glint" aria-hidden="true"></span>
         </div>
         <div class="wine__txt">
@@ -370,13 +376,15 @@
                 </div>
                 <div class="field field--full"><label for="f-note">{{ contact.note }} <small>({{ contact.optional }})</small></label><textarea id="f-note" name="note" rows="2" placeholder="{{ contact.notePh }}"></textarea></div>
               </div>
-              <button class="btn btn--brand rform__submit" type="submit"><span id="rform-label">{{ contact.submit }}</span></button>
+              <button class="btn btn--brand rform__submit" type="submit"><svg class="ig-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg><span id="rform-label">{{ contact.submit }}</span></button>
+              <p class="rform__ignote">{{ contact.igNote }}</p>
 
               <div class="rform__ready" id="rform-ready" hidden tabindex="-1">
-                <p class="rform__ready-title">{{ contact.readyTitle }}</p>
-                <p class="rform__ready-text">{{ contact.readyText }}</p>
+                <p class="rform__ready-title" id="rform-ready-title">{{ contact.readyTitle }}</p>
+                <p class="rform__ready-text" id="rform-ready-text">{{ contact.readyText }}</p>
                 <pre class="rform__msg" id="rform-msg"></pre>
                 <div class="rform__actions">
+                  <a class="btn btn--ig btn--sm" id="rform-ig" href="{{ cfg:links.instagram }}" target="_blank" rel="noopener" hidden><svg class="ig-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>{{ contact.igOpen }}</a>
                   <button class="btn btn--brand btn--sm" type="button" id="rform-copy">{{ contact.copy }}</button>
                   <a class="btn btn--ghost btn--sm" href="{{ cfg:phone.href }}">{{ contact.call }} {{ cfg:phone.display }}</a>
                   <button class="link-arrow" type="button" id="rform-edit">{{ contact.edit }}</button>

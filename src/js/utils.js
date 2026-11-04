@@ -35,3 +35,6 @@ export const lang = document.documentElement.lang || 'sr';
 
 /** Normalizacija za pretragu: bez dijakritika, mala slova. */
 export const normalize = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'dj').trim();
+
+/** Centar SVG elementa (za GSAP svgOrigin — okretanje reči iz logoa oko sopstvene sredine). */
+export const svgCenter = (i, el) => { const b = el.getBBox(); return `${b.x + b.width / 2} ${b.y + b.height / 2}`; };

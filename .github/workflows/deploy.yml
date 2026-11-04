@@ -37,9 +37,8 @@ jobs:
       - name: Instalacija
         run: npm ci
 
-      - name: Logo, slike, ikonice i build
+      - name: Ikonice, slike i build
         run: |
-          node scripts/build-logo.mjs
           node scripts/build-icons.mjs
           npm run build
 
