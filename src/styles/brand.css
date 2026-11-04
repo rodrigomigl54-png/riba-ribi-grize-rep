@@ -1,2 +1,2 @@
-/* Generisano iz scripts/build-logo.mjs — boja podrazumevana (logo.png još ne postoji) */
-:root { --brand: #1C4C8C; }
+/* Generisano iz scripts/vectorize-logo.py — plava iz logo.png */
+:root { --brand: #183C68; }

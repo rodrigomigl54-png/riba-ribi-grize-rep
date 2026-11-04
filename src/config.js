@@ -33,11 +33,14 @@ export const config = {
   },
 
   /**
-   * REZERVACIJE
-   * Upiši WhatsApp broj (međunarodni format, samo cifre, npr. '381641234567')
-   * ili email. Prioritet: whatsapp → email → (ništa) kopiranje teksta + poziv.
+   * REZERVACIJE — kuda forma šalje zahtev. Prioritet: instagram → whatsapp → email.
+   * instagram: korisničko ime (bez @). Forma kopira poruku i otvara Instagram chat
+   *            (ig.me/m/…); gost samo nalepi i pošalje.
+   * whatsapp:  broj u međunarodnom formatu, samo cifre (npr. '381641234567').
+   * email:     adresa. Ako je sve prazno: poruka za kopiranje + poziv.
    */
   reservations: {
+    instagram: 'ribaribigrize',
     whatsapp: '',
     email: '',
   },
