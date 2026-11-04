@@ -105,6 +105,9 @@ export function initMenu() {
     if (e.key === 'End') { e.preventDefault(); select(n - 1, { focus: true }); }
   });
 
+  // pregled kormila nikad ne sme da se „pomeri" (browser bi to uradio pri fokusu skrivene kategorije)
+  view.addEventListener('scroll', () => { view.scrollTop = 0; view.scrollLeft = 0; });
+
   /* ---- okretanje kormila prevlačenjem (miš i prst) ---- */
   let dragging = false, dragMoved = false, sx = 0, sy = 0, startAngle = 0, pid = null;
   view.addEventListener('pointerdown', (e) => {
@@ -213,6 +216,20 @@ export function initMenu() {
 
   // kad se izabere kategorija tokom pretrage, pretraga se briše
   tabs.forEach((t) => t.addEventListener('click', () => { if (query.length) { search.value = ''; query = []; apply(); } }));
+
+  // na telefonu: traka se jednom kratko „pomeri" da gost vidi da se lista prstom
+  if (!rm && !isFinePointer()) {
+    const nudge = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) return;
+      nudge.disconnect();
+      const tr = activeTrack();
+      setTimeout(() => {
+        tr.scrollTo({ left: tr.scrollLeft + 140, behavior: 'smooth' });
+        setTimeout(() => tr.scrollTo({ left: 0, behavior: 'smooth' }), 650);
+      }, 900);
+    }, { threshold: 0.6 });
+    nudge.observe($('#mpanels'));
+  }
 
   // početno stanje + lagano „pozdravno" okretanje kad jelovnik uđe u ekran
   setAngle(0);

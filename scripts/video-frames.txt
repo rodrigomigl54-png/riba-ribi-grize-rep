@@ -1,0 +1,5 @@
+# Kadrovi iz videa koji idu u galeriju (sredina zadatog intervala)
+konoba-film.mp4        0.00  1.00
+konoba-film.mp4        4.60  2.40
+konoba-film.mp4        8.55  1.90
+file-beurre-blanc.mp4 15.20  1.70  eq=brightness=-0.04:saturation=0.92:contrast=1.03

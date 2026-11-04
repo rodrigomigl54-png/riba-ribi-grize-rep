@@ -104,37 +104,28 @@ Imena fotografija koje sajt koristi: `morska-plata`, `kapesante`, `kapesante-hle
 
 ### Video (intro + hero petlja)
 
-Preuzimanje sa Instagrama **nije uspelo iz razvojnog okruženja** (mreža blokira Instagram, `yt-dlp` je dobio 403). Uradi ovo ručno:
+**Trenutni video je napravljen od 3 snimka koje je restoran poslao** (sirovi fajlovi nisu u gitu, samo gotovi):
+- `konoba-film.mp4` — filmski snimak konobe i jela (najveći deo montaže),
+- `file-beurre-blanc.mp4` — priprema fileta u beurre blanc sosu,
+- `kuhinja.mp4` — **nije korišćen**: ima Instagram vodene žigove po kadrovima i odjavnu karticu.
 
-1. Preuzmi reelove:
-   - https://www.instagram.com/reel/DQPTGYCDUuE/
-   - https://www.instagram.com/reel/DE76qMXM9In/
+Rezultat:
+- **intro** ~16 s: konoba spolja noću → unutra → vatra → roštilj → kuhinja → tanjiri → vino → file sa pečatom logoa (na tom kadru se pojavljuje animirani logo i intro „zaroni" u sajt);
+- **hero petlja** ~9 s: mirniji kadrovi hrane iz istih snimaka, kraj se pretapa u početak;
+- vertikalno (telefon) i horizontalno (računar), MP4 + WebM, bez zvuka; poboljšanje slike: uklanjanje šuma, uvećanje (intro 900×1600), izoštravanje, ujednačen „morski" ton;
+- 4 kadra iz videa su dodata u galeriju.
 
-   Najlakše je sa svog računara:
+Izbor kadrova je u `scripts/video-cuts-intro.txt`, `scripts/video-cuts-hero.txt` i `scripts/video-frames.txt` (fajl, početak, trajanje). Da promeniš montažu: stavi sirove snimke u `public/assets/video/raw/` pod tim imenima, izmeni liste i pokreni `npm run video` (traje ~8 min), pa `npm run build`.
+
+Novi reelovi sa Instagrama: najlakše je sačuvati ih sa telefona; ili preko `yt-dlp` sa svog računara:
    ```bash
    pip install -U yt-dlp
    ```
    ```bash
    yt-dlp -o "public/assets/video/raw/%(id)s.%(ext)s" https://www.instagram.com/reel/DQPTGYCDUuE/ https://www.instagram.com/reel/DE76qMXM9In/
    ```
-   Ako Instagram traži prijavu, dodaj `--cookies-from-browser chrome` (ili `firefox`). Alternativa: preuzmi originalne fajlove direktno sa telefona/naloga restorana — to je i najbolji kvalitet.
-2. Stavi `.mp4` fajlove u `public/assets/video/raw/`.
-3. Pokreni:
-   ```bash
-   npm run video
-   ```
-4. Pa `npm run build`.
 
-Skripta `scripts/build-video.sh`:
-- potpuno uklanja zvuk (`-an`) — autorska prava na muziku;
-- detektuje rezove u snimcima i bira stabilne kadrove iz sredine, naizmenično iz oba reela;
-- spaja ih mekim prelazima (crossfade) → **intro** (~16 s) i **hero petlju** (~9–10 s, kraj se pretapa u početak pa je spoj neprimetan);
-- ujednačava boju (blago hladniji, „morski" ton);
-- izvozi H.264 MP4 (`-preset veryfast`, `+faststart`) i VP9 WebM, vertikalno (telefon) i horizontalno (desktop, crop sa fokusom malo ispod sredine), plus `poster.jpg` za svaki snimak;
-- izvlači 4 kadra za galeriju (`public/assets/video/frames/`);
-- piše `src/generated/video.json` — sajt tek tada uključuje video.
-
-Testirano na probnim snimcima: hero petlja ~0,5–0,6 MB, intro ~1–2 MB.
+Veličine: hero petlja ~1,1–1,3 MB, intro ~3,3 MB (telefon) / ~2,8 MB (računar). Hero video počinje da se učitava tek kada intro krene da nestaje, da ne bi delili internet.
 
 Ručna kontrola (opciono):
 - `scripts/video-cuts.txt` — ako postoji, koristi se umesto automatskog izbora. Format po redu: `ime-fajla.mp4  start(s)  trajanje(s)`;
@@ -233,12 +224,13 @@ Sav sadržaj (uključujući ceo jelovnik) je u samom HTML-u — dobro za Google 
 - Navigacija: providna preko hero-a, „staklena" ispod; sama menja svetlu/tamnu varijantu prema sekciji; sakriva se pri skrolu nadole.
 
 **Tehnika:**
-- Vite + vanilla JS, GSAP + ScrollTrigger, Lenis. Bez trackera, kolačića i analitike.
+- Vite + vanilla JS, GSAP + ScrollTrigger, Lenis (glatki skrol samo uz miš — na telefonu je nativni skrol, da trake i kormilo rade prirodno prstom). Bez trackera, kolačića i analitike.
+- Zaštita od keša: posle svake objave stranica proveri `version.json` i, ako telefon drži staru verziju, jednom se sama osveži.
 - Engleska verzija je zasebna stranica (`/en/`) umesto prevoda u browseru — bolje za Google (hreflang), radi bez JS-a.
 - Cene na EN stranici koriste englesko razdvajanje hiljada (`1,550 RSD`), na srpskoj `1.550 RSD`.
 - SEO: title/description SR i EN, Open Graph slika, `schema.org/Restaurant` (adresa, telefon, radno vreme, `$$$`, Seafood/Mediterranean/Dalmatian, ocena 4.8/1481), `sitemap.xml`, `robots.txt`, favicon set.
 - Pristupačnost: semantički HTML, alt tekstovi, vidljiv fokus, skip link, tastatura svuda, pun `prefers-reduced-motion` (bez intra, bez animacija, bez Lenis-a, bez videa).
-- Lighthouse (mobilni, lokalno, bez fotografija): performanse 91–97, pristupačnost 100, najbolje prakse 100, SEO 100.
+- Lighthouse (mobilni, lokalno, sa fotografijama i videom): performanse 93–98, pristupačnost 100, najbolje prakse 100, SEO 100.
 - Testirano na 375, 390, 768, 1440 i 1920 px.
 
 ---

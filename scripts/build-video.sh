@@ -17,9 +17,13 @@
 #   4. pravi petlju sa glatkim spojem kraja i početka
 #   5. eksportuje H.264 (-preset veryfast, +faststart) i VP9 webm, vertikalno i horizontalno
 #
-#  Ručna kontrola (opciono):
-#   - scripts/video-cuts.txt — ako postoji, koristi se umesto automatskog izbora.
-#     Format po redu:  ime-fajla.mp4  start(s)  trajanje(s)
+#  Ručna kontrola (preporučeno — tako je napravljen trenutni video):
+#   - scripts/video-cuts-intro.txt i scripts/video-cuts-hero.txt — tačno izabrani kadrovi
+#     za intro i za hero petlju. Format po redu:
+#       ime-fajla.mp4  start(s)  trajanje(s)  [dodatni ffmpeg filter, npr. eq=brightness=-0.03]
+#   - (starije) scripts/video-cuts.txt — jedna lista za oba
+#  Poboljšanje slike: uklanjanje šuma (hqdn3d), uvećanje Lanczos-om (vertikalno 1080×1920),
+#  blago izoštravanje (unsharp).
 #   - FOCUS_Y=0.55  vertikalni fokus za horizontalni crop (0 = vrh, 1 = dno)
 #   - INTRO_LEN=16  HERO_LEN=10  ciljana trajanja u sekundama
 #
@@ -36,7 +40,7 @@ trap 'rm -rf "$TMP"' EXIT
 FOCUS_Y="${FOCUS_Y:-0.55}"
 INTRO_LEN="${INTRO_LEN:-16}"
 HERO_LEN="${HERO_LEN:-10}"
-XF=0.5          # trajanje crossfade-a
+XF="${XF:-0.4}"   # trajanje crossfade-a
 FPS=30
 # blago hladniji, „morski" grade — bez preteranog filtera
 GRADE="eq=contrast=1.04:saturation=0.94:gamma=0.98,colorbalance=rs=-0.03:gs=0.0:bs=0.05:rm=-0.02:bm=0.03:rh=0.01:bh=-0.01"
@@ -55,10 +59,18 @@ dur() { ffprobe -v error -show_entries format=duration -of csv=p=0 "$1" | awk '{
 
 # ── 1. Lista segmenata: "fajl start trajanje" ──────────────────────────────
 SEGS="$TMP/segs.txt"; : > "$SEGS"
-if [ -f "$ROOT/scripts/video-cuts.txt" ]; then
+MANUAL_SPLIT=0
+read_cuts() { grep -v '^\s*#' "$1" | awk 'NF>=3' | while read -r f s d x; do echo "$RAW/$f $s $d ${x:-null}"; done; }
+if [ -f "$ROOT/scripts/video-cuts-intro.txt" ] && [ -f "$ROOT/scripts/video-cuts-hero.txt" ]; then
+  echo "→ Koristim ručni izbor: video-cuts-intro.txt + video-cuts-hero.txt"
+  read_cuts "$ROOT/scripts/video-cuts-intro.txt" >> "$SEGS"
+  INTRO_COUNT=$(wc -l < "$SEGS")
+  read_cuts "$ROOT/scripts/video-cuts-hero.txt" >> "$SEGS"
+  MANUAL_SPLIT=1
+elif [ -f "$ROOT/scripts/video-cuts.txt" ]; then
   echo "→ Koristim ručni izbor iz scripts/video-cuts.txt"
   grep -v '^\s*#' "$ROOT/scripts/video-cuts.txt" | awk 'NF>=3' | while read -r f s d; do
-    echo "$RAW/$f $s $d" >> "$SEGS"
+    echo "$RAW/$f $s $d null" >> "$SEGS"
   done
 else
   PER_CLIP=$(( (INTRO_LEN / 2 + ${#CLIPS[@]} - 1) / ${#CLIPS[@]} + 1 ))   # ~2.4 s po segmentu
@@ -76,7 +88,7 @@ else
       awk -v D="$D" -v F="$c" -v N="$PER_CLIP" 'BEGIN{ for(i=0;i<N;i++){ s=0.8+(D-3.4)*(i+0.5)/N; print F, s, 2.4, 2.4 } }' > "$TMP/shots.txt"
     fi
     # najduži (najstabilniji) kadrovi, pa vraćamo hronološki redosled
-    sort -k4 -nr "$TMP/shots.txt" | head -n "$PER_CLIP" | sort -k2 -n | awk '{print $1, $2, $3}' >> "$SEGS"
+    sort -k4 -nr "$TMP/shots.txt" | head -n "$PER_CLIP" | sort -k2 -n | awk '{print $1, $2, $3, "null"}' >> "$SEGS"
   done
   # prepliće snimke (A1 B1 A2 B2 …) za ritam
   awk '{f=$1; n[f]++; print n[f], NR, $0}' "$SEGS" | sort -k1,1n -k2,2n | cut -d' ' -f3- > "$TMP/s2.txt" && mv "$TMP/s2.txt" "$SEGS"
@@ -86,14 +98,14 @@ echo "→ Segmenti:"; sed 's|.*/||' "$SEGS" | sed 's/^/   /'
 # ── 2. Render segmenata u obe orijentacije ─────────────────────────────────
 render_segments() { # $1=orijentacija $2=W $3=H
   local o=$1 W=$2 H=$3 i=0
-  while read -r f s d; do
+  while read -r f s d x; do
     ffmpeg -nostdin -hide_banner -loglevel error -y -ss "$s" -t "$d" -i "$f" -an \
-      -vf "scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H}:(iw-${W})/2:(ih-${H})*${FOCUS_Y},fps=${FPS},${GRADE},format=yuv420p,setsar=1" \
+      -vf "hqdn3d=1.5:1.5:5:5,scale=${W}:${H}:force_original_aspect_ratio=increase:flags=lanczos,crop=${W}:${H}:(iw-${W})/2:(ih-${H})*${FOCUS_Y},fps=${FPS},${x:-null},${GRADE},unsharp=5:5:0.55:5:5:0,format=yuv420p,setsar=1" \
       -c:v libx264 -preset veryfast -crf 16 "$TMP/${o}-$i.mp4"
     i=$((i+1))
   done < "$SEGS"
 }
-render_segments portrait 720 1280
+render_segments portrait 1080 1920
 render_segments landscape 1280 720
 N=$(wc -l < "$SEGS")
 
@@ -125,39 +137,46 @@ make_loop() { # $1=ulaz $2=izlaz
 }
 
 # ── 5. Finalni eksport ───────────────────────────────────────────────────────
-export_all() { # $1=ulaz $2=ime $3=crf_h264 $4=crf_vp9 $5=maxrate
-  ffmpeg -nostdin -hide_banner -loglevel error -y -i "$1" -an -c:v libx264 -preset veryfast -profile:v high \
+export_all() { # $1=ulaz $2=ime $3=crf_h264 $4=crf_vp9 $5=maxrate [$6=scale filter]
+  local sc="${6:-null}"
+  ffmpeg -nostdin -hide_banner -loglevel error -y -i "$1" -an -vf "$sc" -c:v libx264 -preset veryfast -profile:v high \
     -crf "$3" -maxrate "$5" -bufsize "$5" -pix_fmt yuv420p -movflags +faststart "$OUT/$2.mp4"
-  ffmpeg -nostdin -hide_banner -loglevel error -y -i "$1" -an -c:v libvpx-vp9 -b:v 0 -crf "$4" \
+  ffmpeg -nostdin -hide_banner -loglevel error -y -i "$1" -an -vf "$sc" -c:v libvpx-vp9 -b:v 0 -crf "$4" \
     -deadline good -cpu-used 5 -row-mt 1 -pix_fmt yuv420p "$OUT/$2.webm"
-  ffmpeg -nostdin -hide_banner -loglevel error -y -ss 0.2 -i "$1" -frames:v 1 -q:v 3 "$OUT/$2-poster.jpg"
+  ffmpeg -nostdin -hide_banner -loglevel error -y -ss 0.2 -i "$1" -frames:v 1 -vf "$sc" -q:v 3 "$OUT/$2-poster.jpg"
   printf "   %-22s mp4 %6s KB   webm %6s KB\n" "$2" "$(( $(stat -c%s "$OUT/$2.mp4") / 1024 ))" "$(( $(stat -c%s "$OUT/$2.webm") / 1024 ))"
 }
 
 # Intro: svi segmenti (skraćuje se na ~INTRO_LEN)
 INTRO_N=$N
-while [ "$INTRO_N" -gt 3 ] && [ "$(awk -v n="$INTRO_N" -v x="$XF" 'BEGIN{print int(n*2.4-(n-1)*x)}')" -gt "$INTRO_LEN" ]; do INTRO_N=$((INTRO_N-1)); done
+if [ "$MANUAL_SPLIT" -eq 1 ]; then INTRO_N=$INTRO_COUNT; fi
+while [ "$MANUAL_SPLIT" -eq 0 ] && [ "$INTRO_N" -gt 3 ] && [ "$(awk -v n="$INTRO_N" -v x="$XF" 'BEGIN{print int(n*2.4-(n-1)*x)}')" -gt "$INTRO_LEN" ]; do INTRO_N=$((INTRO_N-1)); done
 # Hero: najviše 5 segmenata (~8–12 s posle petlje)
 HERO_N=$N; [ "$HERO_N" -gt 5 ] && HERO_N=5
 HERO_FROM=$(( N - HERO_N ))
+if [ "$MANUAL_SPLIT" -eq 1 ]; then HERO_FROM=$INTRO_COUNT; fi
 
 echo "→ Eksport:"
 for o in portrait landscape; do
+  # vertikalni intro 900×1600 (oštar na telefonu, ~3,5 MB); hero petlja je pozadina pod
+  # tamnim prelazom, pa je 720×1280 dovoljno i fajl ostaje mali
+  HSC=null; ISC=null
+  [ "$o" = portrait ] && HSC="scale=720:1280:flags=lanczos" && ISC="scale=900:1600:flags=lanczos"
   xfade_chain "$o" 0 $((INTRO_N-1)) "$TMP/intro-$o.mp4"
-  export_all "$TMP/intro-$o.mp4" "intro-$o" 27 38 3M
+  export_all "$TMP/intro-$o.mp4" "intro-$o" 28 42 2M "$ISC"
   xfade_chain "$o" "$HERO_FROM" $((N-1)) "$TMP/heroraw-$o.mp4"
   make_loop "$TMP/heroraw-$o.mp4" "$TMP/hero-$o.mp4"
-  export_all "$TMP/hero-$o.mp4" "hero-$o" 30 42 1.8M
+  export_all "$TMP/hero-$o.mp4" "hero-$o" 30 42 1.8M "$HSC"
 done
 
 # ── 6. Kadrovi za galeriju (iz sredine segmenata, pune rezolucije) ─────────
 mkdir -p "$OUT/frames"; rm -f "$OUT/frames"/frame-*.jpg
 FR=0
-while read -r f s d && [ "$FR" -lt 4 ]; do
+while read -r f s d x && [ "$FR" -lt 4 ]; do
   t=$(awk -v s="$s" -v d="$d" 'BEGIN{printf "%.3f", s+d/2}')
   FR=$((FR+1))
-  ffmpeg -nostdin -hide_banner -loglevel error -y -ss "$t" -i "$f" -frames:v 1 -vf "$GRADE" -q:v 2 "$OUT/frames/frame-$FR.jpg"
-done < <(awk 'NR%2==1' "$SEGS")
+  ffmpeg -nostdin -hide_banner -loglevel error -y -ss "$t" -i "$f" -frames:v 1 -vf "hqdn3d=1.5:1.5:5:5,scale=-2:1920:flags=lanczos,${x:-null},$GRADE,unsharp=5:5:0.55:5:5:0" -q:v 2 "$OUT/frames/frame-$FR.jpg"
+done < <(if [ -f "$ROOT/scripts/video-frames.txt" ]; then read_cuts "$ROOT/scripts/video-frames.txt"; else awk 'NR%2==1' "$SEGS"; fi)
 
 INTRO_D=$(dur "$OUT/intro-landscape.mp4")
 HERO_D=$(dur "$OUT/hero-landscape.mp4")

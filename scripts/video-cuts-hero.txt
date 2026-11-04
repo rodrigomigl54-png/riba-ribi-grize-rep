@@ -1,0 +1,8 @@
+# Hero petlja (~10 s) — mirniji kadrovi hrane. Format isti kao za intro.
+konoba-film.mp4        4.60  2.40
+file-beurre-blanc.mp4 15.20  1.70  eq=brightness=-0.04:saturation=0.92:contrast=1.03
+konoba-film.mp4        8.60  1.80
+konoba-film.mp4       20.45  1.35
+konoba-film.mp4       13.40  1.60
+konoba-film.mp4       15.05  1.55
+file-beurre-blanc.mp4  0.10  2.00  eq=brightness=-0.04:saturation=0.92:contrast=1.03

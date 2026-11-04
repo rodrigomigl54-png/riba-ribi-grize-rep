@@ -1,0 +1,16 @@
+# Intro montaža (~16 s). Format: fajl  start  trajanje  [dodatni filter]
+# Tok: konoba spolja noću → unutra → vatra → roštilj → kuhinja → tanjiri → vino → file sa logoom
+konoba-film.mp4        0.05  0.95
+konoba-film.mp4        1.00  0.90
+file-beurre-blanc.mp4  0.10  1.60  eq=brightness=-0.04:saturation=0.92:contrast=1.03
+konoba-film.mp4        3.55  0.90
+konoba-film.mp4        4.60  1.90
+file-beurre-blanc.mp4  6.60  1.40  eq=brightness=-0.04:saturation=0.92:contrast=1.03
+konoba-film.mp4        8.55  1.90
+konoba-film.mp4       13.40  1.60
+file-beurre-blanc.mp4 13.90  1.20  eq=brightness=-0.04:saturation=0.92:contrast=1.03
+konoba-film.mp4       15.05  1.50
+konoba-film.mp4       16.70  1.50
+konoba-film.mp4       20.45  1.35
+konoba-film.mp4       21.90  1.15
+konoba-film.mp4       24.85  3.00

@@ -54,6 +54,7 @@ export function initIntro({ onDone }) {
   const dive = (fast = false) => {
     if (finished) return;
     finished = true;
+    document.dispatchEvent(new Event('rr:intro-done')); // hero video tek sada počinje da se učitava
     const hero = $('.hero');
     const tl = gsap.timeline({
       onComplete: () => {
