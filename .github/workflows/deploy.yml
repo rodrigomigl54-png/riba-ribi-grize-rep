@@ -1,0 +1,63 @@
+# Build i objava sajta na GitHub Pages posle svakog pusha na main.
+#
+# Podrazumevano: https://<korisnik>.github.io/<repozitorijum>/
+# Za sopstveni domen (npr. rrgr.rs) u Settings → Secrets and variables → Actions → Variables dodaj:
+#   BASE_PATH = /
+#   SITE_URL  = https://rrgr.rs
+name: Objava sajta (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BASE_PATH: ${{ vars.BASE_PATH || format('/{0}/', github.event.repository.name) }}
+      SITE_URL: ${{ vars.SITE_URL || format('https://{0}.github.io/{1}', github.repository_owner, github.event.repository.name) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalacija
+        run: npm ci
+
+      - name: Logo, slike, ikonice i build
+        run: |
+          node scripts/build-logo.mjs
+          node scripts/build-icons.mjs
+          npm run build
+
+      - name: Provera (cene, linkovi, SEO)
+        run: npm run check
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -31,7 +31,26 @@ npm run check      # posle builda: proverava cene, linkove (tel, Wolt, Instagram
 
 Na server se kači **samo sadržaj foldera `dist/`**. Sirovi video i originalne fotografije se automatski izbacuju iz `dist/`.
 
-> Sajt očekuje da bude u korenu domena (`https://rrgr.rs/`), ne u podfolderu.
+Sajt može da radi i u podfolderu: `BASE_PATH=/podfolder/ npm run build`. Adresa za SEO (canonical, sitemap, Open Graph) se može zameniti sa `SITE_URL=https://...`.
+
+### Objava na GitHub Pages (automatski)
+
+Workflow `.github/workflows/deploy.yml` posle svakog pusha na `main` sam:
+instalira pakete → pravi logo, ikonice i slike → buildu sajt → pokreće `npm run check` → objavljuje `dist/`.
+
+Adresa: **https://rodrigomigl54-png.github.io/riba-ribi-grize-rep/** (engleski: `/en/`).
+
+Jednokratno podešavanje (radi vlasnik repozitorijuma):
+1. **Settings → Pages → Build and deployment → Source: „GitHub Actions"**.
+2. **Actions** → „Objava sajta (GitHub Pages)" → **Run workflow** (ili samo push na `main`).
+
+Kada se ubace slike/video, samo ih commituj i pushuj na `main` — sajt se sam obnovi za par minuta.
+(Obrađeni video iz `npm run video` i `src/generated/video.json` treba commitovati; ffmpeg se ne pokreće na GitHub-u.)
+
+**Sopstveni domen (rrgr.rs):**
+1. Settings → Pages → Custom domain: `rrgr.rs` (uključi „Enforce HTTPS" kad postane dostupno).
+2. Kod registrara domena: `A` zapisi za `rrgr.rs` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`; `CNAME` za `www` → `rodrigomigl54-png.github.io`.
+3. Settings → Secrets and variables → Actions → **Variables**: `BASE_PATH` = `/` i `SITE_URL` = `https://rrgr.rs`, pa ponovo pokreni workflow.
 
 ---
 

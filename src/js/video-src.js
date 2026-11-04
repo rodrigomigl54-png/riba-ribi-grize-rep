@@ -13,10 +13,11 @@ export function makeVideo(name, { loop = false } = {}) {
   v.setAttribute('aria-hidden', 'true');
   v.preload = 'auto';
   v.loop = loop;
-  v.poster = `/assets/video/${name}-${o}-poster.jpg`;
+  const dir = `${import.meta.env.BASE_URL}assets/video/`;
+  v.poster = `${dir}${name}-${o}-poster.jpg`;
   for (const [ext, type] of [['webm', 'video/webm'], ['mp4', 'video/mp4']]) {
     const s = document.createElement('source');
-    s.src = `/assets/video/${name}-${o}.${ext}`;
+    s.src = `${dir}${name}-${o}.${ext}`;
     s.type = type;
     v.appendChild(s);
   }
