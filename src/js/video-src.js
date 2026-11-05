@@ -15,7 +15,9 @@ export function makeVideo(name, { loop = false } = {}) {
   v.loop = loop;
   const dir = `${import.meta.env.BASE_URL}assets/video/`;
   v.poster = `${dir}${name}-${o}-poster.jpg`;
-  for (const [ext, type] of [['webm', 'video/webm'], ['mp4', 'video/mp4']]) {
+  // MP4 (H.264) prvi: većina uređaja ga dekodira hardverski → glatko, bez seckanja.
+  // WebM (VP9) ostaje kao rezerva.
+  for (const [ext, type] of [['mp4', 'video/mp4'], ['webm', 'video/webm']]) {
     const s = document.createElement('source');
     s.src = `${dir}${name}-${o}.${ext}`;
     s.type = type;

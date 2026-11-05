@@ -37,7 +37,7 @@
       try {
         var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var seen = sessionStorage.getItem('rr-intro');
-        if (!rm && !seen && !/[?&]nointro/.test(location.search) && !location.hash) d.classList.add('intro-on');
+        if (!rm && !seen && !/[?&]nointro/.test(location.search) && !location.hash) d.classList.add('intro-on', 'intro-playing');
       } catch (e) {}
     })();
   </script>

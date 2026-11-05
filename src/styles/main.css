@@ -247,7 +247,7 @@ input, textarea, select { font: inherit; color: inherit; }
   z-index: 2; padding: 12px 20px; border-radius: 999px;
   border: 1px solid rgba(251, 248, 242, .45); color: var(--salt);
   font-size: 12px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-  background: rgba(4, 17, 33, .3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  background: rgba(4, 17, 33, .45); /* bez backdrop-filter: zamućenje preko videa se računa u svakom kadru i seče sliku */
   transition: background .3s, color .3s;
 }
 .intro__skip:hover, .intro__skip:focus-visible { background: var(--salt); color: var(--ink); }
@@ -1002,3 +1002,8 @@ input, textarea, select { font: inherit; color: inherit; }
   border: 2px solid rgba(255, 255, 255, .25); border-top-color: var(--sky); animation: spin .9s linear infinite; z-index: 3;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* Dok intro video traje, stranica ispod se ne iscrtava i ne animira (glatkiji video).
+   Rezerva: ako JS zakaže, sadržaj se svejedno pojavi posle 24 s. */
+.intro-playing main, .intro-playing .footer, .intro-playing .nav, .intro-playing .mbar { visibility: hidden; animation: show-late 0s 24s forwards; }
+@keyframes show-late { to { visibility: visible; } }

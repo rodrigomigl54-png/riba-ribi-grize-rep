@@ -77,11 +77,28 @@ class RRDBNet(nn.Module):
         return self.conv_last(self.lrelu(self.conv_hr(feat)))
 
 
-def upscale(model, img: Image.Image) -> Image.Image:
+def upscale(model, img: Image.Image, tile: int = 192, pad: int = 12) -> Image.Image:
+    """×4 uvećanje, po pločicama (sa preklopom) da veće slike ne potroše svu memoriju."""
     x = torch.from_numpy(np.asarray(img.convert('RGB'), dtype=np.float32) / 255.0).permute(2, 0, 1)[None]
+    _, _, h, w = x.shape
+    out = torch.zeros((1, 3, h * 4, w * 4))
     with torch.no_grad():
-        y = model(x).clamp(0, 1)[0].permute(1, 2, 0).numpy()
+        for y0 in range(0, h, tile):
+            for x0 in range(0, w, tile):
+                y1, x1 = min(y0 + tile, h), min(x0 + tile, w)
+                py0, px0 = max(y0 - pad, 0), max(x0 - pad, 0)
+                py1, px1 = min(y1 + pad, h), min(x1 + pad, w)
+                part = model(x[:, :, py0:py1, px0:px1]).clamp(0, 1)
+                oy, ox = (y0 - py0) * 4, (x0 - px0) * 4
+                out[:, :, y0 * 4:y1 * 4, x0 * 4:x1 * 4] = part[:, :, oy:oy + (y1 - y0) * 4, ox:ox + (x1 - x0) * 4]
+    y = out[0].permute(1, 2, 0).numpy()
     return Image.fromarray((y * 255.0).round().astype(np.uint8))
+
+
+def sharpen(img: Image.Image, amount: float) -> Image.Image:
+    """Blago izoštravanje (unsharp mask) — ističe ivice bez „aure"."""
+    from PIL import ImageFilter
+    return img.filter(ImageFilter.UnsharpMask(radius=1.6, percent=int(amount * 100), threshold=2)) if amount > 0 else img
 
 
 def relight(img: Image.Image) -> tuple[Image.Image, str]:
@@ -105,6 +122,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--model', required=True)
     ap.add_argument('--min-width', type=int, default=1400, help='dodatno uvećanje (Lanczos) do ove širine')
+    ap.add_argument('--passes', type=int, default=1, help='broj AI prolaza (2 = ×16, pa se smanjuje na --max-width)')
+    ap.add_argument('--max-width', type=int, default=1800, help='posle uvećanja, smanji na najviše ovu širinu/visinu')
+    ap.add_argument('--sharpen', type=float, default=0.0, help='jačina izoštravanja, npr. 0.6')
     ap.add_argument('pairs', nargs='+', help='ulaz.jpg:ime')
     a = ap.parse_args()
 
@@ -118,11 +138,22 @@ def main():
     for pair in a.pairs:
         src, name = pair.rsplit(':', 1)
         im = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
-        up = upscale(model, im)
+        up = im
+        for _ in range(a.passes):
+            up = upscale(model, up)
+            # posle svakog prolaza ne treba nam više od ~2× ciljne veličine
+            lim = a.max_width * 2
+            if max(up.size) > lim:
+                r = lim / max(up.size)
+                up = up.resize((round(up.width * r), round(up.height * r)), Image.LANCZOS)
+        if max(up.size) > a.max_width:
+            r = a.max_width / max(up.size)
+            up = up.resize((round(up.width * r), round(up.height * r)), Image.LANCZOS)
         if up.width < a.min_width:
             r = a.min_width / up.width
             up = up.resize((a.min_width, round(up.height * r)), Image.LANCZOS)
         up, note = relight(up)
+        up = sharpen(up, a.sharpen)
         up.save(OUT / f'{name}.jpg', quality=90, optimize=True, progressive=True)
         print(f'✓ {name}.jpg  {im.width}×{im.height} → {up.width}×{up.height}  ({note})')
 
